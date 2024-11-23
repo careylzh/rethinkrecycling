@@ -19,7 +19,7 @@ class LoadingScreen(tk.Tk):
             self, 
             text="Loading, please wait...", 
             font=("Arial", 14), 
-            bg="green"
+            bg="blue"
         )
         self.label.pack(pady=20)
         
@@ -30,6 +30,7 @@ class LoadingScreen(tk.Tk):
         # Define the animation frames (circle positions)
         self.frames = cycle([(10, 10, 90, 90), (20, 20, 80, 80), (30, 30, 70, 70), (40, 40, 60, 60)])
         self.animation_circle = self.canvas.create_oval(10, 10, 90, 90, fill="blue")
+        self.animation_arc = self.canvas.create_arc(5,4,3,2, fill='white')
 
         # Start animation
         self.animate_loading()
@@ -37,6 +38,7 @@ class LoadingScreen(tk.Tk):
     def animate_loading(self):
         frame = next(self.frames)
         self.canvas.coords(self.animation_circle, *frame)
+        self.canvas.coords(self.animation_arc, *frame)
         self.after(200, self.animate_loading)  # Update every 200ms
 
 # Run the application
