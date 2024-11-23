@@ -19,7 +19,7 @@ class LoadingScreen(tk.Tk):
             self, 
             text="Loading, please wait...", 
             font=("Arial", 14), 
-            bg="white"
+            bg="green"
         )
         self.label.pack(pady=20)
         
