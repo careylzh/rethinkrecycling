@@ -5,7 +5,7 @@ import random
 
 #internal software modules 
 from loading_screen import LoadingScreen
-from win_animation import WinAnimation
+from win_animation_circle_with_text import WinAnimation
 
 total_prize_pool = 5.00
 
@@ -24,8 +24,11 @@ while True:
           sleep(1)
           chosen_prize = random.choice(probability_list)
           print(chosen_prize)
-     calculate_reward()
+          calculate_reward_amount = int(chosen_prize*total_prize_pool)
+          return calculate_reward_amount
 
      #displays win animations
-     app = WinAnimation(calculated_amount=10)
-     
+     calculate_reward_amount=calculate_reward()
+     if(calculate_reward_amount == 0):          
+          app = WinAnimation(calculate_reward_amount)
+          app.mainloop()

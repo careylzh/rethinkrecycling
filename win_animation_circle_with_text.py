@@ -10,7 +10,7 @@ class WinAnimation(tk.Tk):
     def __init__(self, calculated_amount):
         super().__init__()
         self.title("Win Screen")
-        self.geometry("300x200")
+        self.geometry("500x200")
         self.configure(bg="white")
         self.resizable(False, False)
         self.calculated_amount = calculated_amount
@@ -18,7 +18,7 @@ class WinAnimation(tk.Tk):
         # Add a loading message
         self.label = tk.Label(
             self, 
-            text= (f"Congratulations Human, you have won {calculated_amount}"), 
+            text= (f"Congratulations Human, you have won ${calculated_amount}"), 
             font=("Arial", 14), 
             bg="green"
         )
