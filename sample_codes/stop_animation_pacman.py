@@ -11,6 +11,11 @@ def animate():
         new_x1 = x1 + 10 if x2 < 300 else 0  # Reset when it reaches the edge
         new_x2 = new_x1 + (x2 - x1)  # Keep the width constant
 
+        # Update the eye position to match the Pac-Man's movement
+        eye_offset_x = 0.3 * (new_x2 - new_x1)  # Adjust the eye position relative to size
+        eye_offset_y = 0.2 * (y2 - y1)
+        canvas.coords(eye, new_x1 + eye_offset_x, y1 + eye_offset_y, new_x1 + eye_offset_x + 8, y1 + eye_offset_y + 8)
+
         canvas.coords(pacman, new_x1, y1, new_x2, y2)
 
         # Schedule the next frame
@@ -41,6 +46,7 @@ canvas.pack()
 
 # Create a green Pac-Man to animate
 pacman = create_pacman(10, 50, 50, "green")
+eye = canvas.create_oval(25, 60, 33, 68, fill="white", outline="")
 
 animation_running = True
 animate()  # Start the animation
