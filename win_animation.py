@@ -6,18 +6,19 @@ except ImportError:  # Python 3.x present
     import tkinter as tk
 from itertools import cycle
 
-class LoadingScreen(tk.Tk):
-    def __init__(self):
+class WinAnimation(tk.Tk):
+    def __init__(self, calculated_amount):
         super().__init__()
-        self.title("Loading Screen")
+        self.title("Win Screen")
         self.geometry("300x200")
         self.configure(bg="white")
         self.resizable(False, False)
+        self.calculated_amount = calculated_amount
         
         # Add a loading message
         self.label = tk.Label(
             self, 
-            text="Loading, please wait...", 
+            text= (f"Congratulations Human, you have won {calculated_amount}"), 
             font=("Arial", 14), 
             bg="green"
         )
@@ -40,7 +41,7 @@ class LoadingScreen(tk.Tk):
         self.after(200, self.animate_loading)  # Update every 200ms
 
 # Run the application
-if __name__ == "__main__":
-    app = LoadingScreen()
-    app.mainloop()
+# if __name__ == "__main__":
+#     app = WinAnimation(calculated_amount)
+#     app.mainloop()
 
