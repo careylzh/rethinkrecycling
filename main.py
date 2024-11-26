@@ -9,8 +9,6 @@ from win_animation_circle_with_text import WinAnimation
 
 total_prize_pool = 5.00
 
-#d
-
 while True:
      #plays animation for loading screen
      # app = LoadingScreen()
