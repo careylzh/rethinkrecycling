@@ -1,46 +1,48 @@
 import tkinter as tk
 
-calculated_amount = 0
+class LoadingScreen:
+    def __init__(self, canvas, calculated_reward_amount):
+        self.calculated_reward_amount = calculated_reward_amount
+        
+        self.canvas = canvas
+        self.canvas.title("Pacman Chasing Pellet")
 
-def move_pacman():
-    global pacman_open
-    canvas.move(pacman, 20, 0)
-    pacman_coords = canvas.coords(pacman)
-    pellet_coords = canvas.coords(pellet)
+        # Create Canvas
+        self.canvas = tk.Canvas(canvas, width=500, height=200, bg="white")
+        self.canvas.pack()
 
-    # Check collision with the pellet
-    if pacman_coords[2] >= pellet_coords[0]:
-        canvas.delete(pellet)
-        canvas.create_text(250, 150, text='Congratulations Human, you have won {calculated_amount}', font=("Arial", 10), fill="white")
+        # Initialize game elements
+        self.pacman_open = True
+        self.pacman = self.canvas.create_arc(50, 50, 100, 100, start=45, extent=270, fill="green", outline="yellow")
+        self.pellet = self.canvas.create_oval(400, 75, 420, 95, fill="blue", outline="blue")
 
-    # Toggle Pacman mouth
-    if pacman_open:
-        canvas.itemconfig(pacman, start=45, extent=270)
-    else:
-        canvas.itemconfig(pacman, start=0, extent=360)
-    pacman_open = not pacman_open
+        # Start the animation
+        self.move_pacman()
 
-    # Loop animation
-    if pacman_coords[2] < 500:
-        root.after(100, move_pacman)
+    def move_pacman(self):
+        self.canvas.move(self.pacman, 15, 0)
+        pacman_coords = self.canvas.coords(self.pacman)
+        pellet_coords = self.canvas.coords(self.pellet)
 
-# Create the main window
-root = tk.Tk()
-root.title("Pacman Chasing Pellet")
-canvas = tk.Canvas(root, width=500, height=200, bg="black")
-canvas.pack()
+        # Check collision with the pellet
+        if pacman_coords[2] >= pellet_coords[0]:
+            self.canvas.delete(self.pellet)
+            self.canvas.create_text(250, 150, text='Bottle Processed! \n You have won {calculated_reward_amount}', font=("Arial", 14), fill="green")
+            return
 
-# Create Pacman
-pacman = canvas.create_arc(50, 50, 100, 100, start=45, extent=270, fill="yellow", outline="yellow")
-pacman_open = True
+        # Toggle Pacman mouth
+        if self.pacman_open:
+            self.canvas.itemconfig(self.pacman, start=45, extent=270)
+        else:
+            self.canvas.itemconfig(self.pacman, start=0, extent=360)
+        self.pacman_open = not self.pacman_open
 
-# Create Pellet
-pellet = canvas.create_oval(400, 75, 420, 95, fill="white", outline="white")
+        # Continue animation
+        if pacman_coords[2] < 500:
+            self.canvas.after(100, self.move_pacman)
 
-# Start the animation
-move_pacman()
-
-root.after(3, stop_animation)
-
-# Run the Tkinter event loop
-root.mainloop()
+# Create the main Tkinter window
+if __name__ == "__main__":
+    canvas = tk.Tk()
+    game = LoadingScreen(canvas, calculated_reward_amount=10)
+    canvas.mainloop()
