@@ -20,7 +20,7 @@ def calculate_reward():
      calculate_reward_amount = round(chosen_prize*total_prize_pool,2)
      return calculate_reward_amount
 
-def run_animations(animations, calculate_reward_amount):
+def run_animations():
      if animations:
           # control logic to displays win/lose amount and respective animations
           # print("calculate_reward_amount: ", calculate_reward_amount)
@@ -48,7 +48,7 @@ while True:
                AnimationB(canvas),
                LoadingScreen(canvas, calculate_reward_amount)
           ]
-          run_animations(animations, calculate_reward_amount)
+          run_animations()
           USER_PULLS_SLOT_MACHINE_HANDLE = False
 
           #Ask for user input and write phone number and reward to CSV

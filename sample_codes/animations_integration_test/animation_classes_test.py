@@ -103,31 +103,30 @@ class LoadingScreen:
         # self.canvas = tk.Canvas(canvas, width=500, height=200, bg="white")
         # self.canvas.pack()
 
+        # # Start the animation
+        # self.move_pacman()
+
+    def start(self, callback):
         # Initialize game elements
         self.pacman_open = True
         self.pacman = self.canvas.create_arc(50, 50, 100, 100, start=45, extent=270, fill="green", outline="yellow")
         self.pellet = self.canvas.create_oval(400, 75, 420, 95, fill="blue", outline="blue")
-
-        # Start the animation
-        self.move_pacman()
-
-    def start(self, callback):
         self.frames = cycle([(40, 40, 60, 60), (30, 30, 70, 70), (20, 20, 80, 80), (10, 10, 90, 90)])
         self.running = True
         self.callback = callback
         self.move_pacman()
 
-    def animate(self):
-        if not self.running:
-            return
-        # Start animation
-        # _, y1, _, y2 = self.canvas.coords(self.oval)
-        y2 = 401
-        if y2 > 400:  # Stop condition
-            self.running = False
-            self.callback()  # Trigger next animation
-        else:
-            self.canvas.after(50, self.animate)
+    # def animate(self):
+    #     if not self.running:
+    #         return
+    #     # Start animation
+    #     # _, y1, _, y2 = self.canvas.coords(self.oval)
+    #     y2 = 401
+    #     if y2 > 400:  # Stop condition
+    #         self.running = False
+    #         self.callback()  # Trigger next animation
+    #     else:
+    #         self.canvas.after(50, self.animate)
 
     def move_pacman(self):
         self.canvas.move(self.pacman, 15, 0)
