@@ -13,7 +13,9 @@ def main():
     # Initialize animations
     animations = [
         AnimationA(canvas),
-        AnimationB(canvas)
+        AnimationB(canvas),
+        WinAnimation(canvas, 10),
+        # LoadingScreen(canvas, 10)
     ]
 
     # Start animation sequence
