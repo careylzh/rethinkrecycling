@@ -26,6 +26,3 @@ def write_to_csv(calculated_reward_amount, phone_number, file_name='rewards.csv'
 
         # Write the data
         writer.writerow([calculated_reward_amount, phone_number])
-
-# Example usage
-write_to_csv(50.75, '123-456-7890')
