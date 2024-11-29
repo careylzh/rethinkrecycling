@@ -37,6 +37,7 @@ while True:
 
      # Initialize animations
      root = tk.Tk()
+     root.wm_attributes('-fullscreen', 'True')
      canvas = tk.Canvas(root, width=1280, height=800, bg="white")
      canvas.pack()
 
