@@ -1,20 +1,30 @@
 import tkinter as tk
-
+from rewards import *
 class PhoneNumberScreen:
-    def __init__(self, canvas):
+    def __init__(self, canvas, calculated_reward_amount):
         self.canvas = canvas
         self.display = None
         self.running = False
         self.instruction_label = None
+        self.calculated_reward_amount = calculated_reward_amount
+        self.calculated_reward_string = None
 
     def start(self, callback):
         self.canvas.delete("all")  # Deletes all objects on the canvas
         print("start in PhoneNumberScreen called")
+
         # Create a display to show the numbers being pressed
-        self.instruction_label = tk.Label(
-            self.canvas, text="Key in your phone number and receive rewards at the end of today. Happy recycling!",
-            font=("Helvetica", 16), wraplength=300, justify="center"
-        )
+        if(self.calculated_reward_amount == 0):
+            self.instruction_label = tk.Label(
+                self.canvas, text=f"Bottle processed! You have won another chance to recycle. Key in your phone number and receive rewards at the end of today. Happy recycling!",
+                font=("Helvetica", 16), wraplength=300, justify="center"
+            )
+        else:
+            self.instruction_label = tk.Label(
+                self.canvas, text=f"Bottle processed! You have won ${self.calculated_reward_amount}. Key in your phone number and receive rewards at the end of today. Happy recycling!",
+                font=("Helvetica", 16), wraplength=300, justify="center"
+            )
+       
         self.instruction_label.grid(row=0, column=0, columnspan=3, pady=(10, 5))
     
         self.running = True
@@ -68,7 +78,11 @@ class PhoneNumberScreen:
     def submit_display(self):
         current_text = self.display.get()
         print(f"Submitted: {current_text}")
+        #Ask for user input and write phone number and reward to CSV
+        write_to_csv(self.calculated_reward_amount, current_text)
         self.clear_display()
+        # self.canvas.delete("all")
+        # self.callback()
 
 # if __name__ == "__main__":
 #     canvas = tk.Tk()
