@@ -4,21 +4,34 @@ class PhoneNumberScreen:
     def __init__(self, canvas):
         self.canvas = canvas
         self.display = None
+        self.running = False
+        self.instruction_label = None
 
+    def start(self, callback):
+        self.canvas.delete("all")  # Deletes all objects on the canvas
+        print("start in PhoneNumberScreen called")
         # Create a display to show the numbers being pressed
+        self.instruction_label = tk.Label(
+            self.canvas, text="Key in your phone number and receive rewards at the end of today. Happy recycling!",
+            font=("Helvetica", 16), wraplength=300, justify="center"
+        )
+        self.instruction_label.grid(row=0, column=0, columnspan=3, pady=(10, 5))
+    
+        self.running = True
         self.display = tk.Entry(self.canvas, font=("Helvetica", 24), justify="right")
-        self.display.grid(row=0, column=0, columnspan=3, ipadx=10, ipady=10, padx=5, pady=5)
+        self.display.grid(row=1, column=0, columnspan=3, ipadx=10, ipady=10, padx=5, pady=5)
 
         # Keypad buttons
         self.create_keypad()
+        self.callback = callback
         
     def create_keypad(self):
         # Layout for keypad
         buttons = [
-            ('1', 1, 0), ('2', 1, 1), ('3', 1, 2),
-            ('4', 2, 0), ('5', 2, 1), ('6', 2, 2),
-            ('7', 3, 0), ('8', 3, 1), ('9', 3, 2),
-            ('0', 4, 1)
+            ('1', 2, 0), ('2', 2, 1), ('3', 2, 2),
+            ('4', 3, 0), ('5', 3, 1), ('6', 3, 2),
+            ('7', 4, 0), ('8', 4, 1), ('9', 4, 2),
+            ('0', 5, 1)
         ]
         
         for (text, row, col) in buttons:
@@ -33,14 +46,14 @@ class PhoneNumberScreen:
             self.canvas, text="C", font=("Helvetica", 20),
             command=self.clear_display, width=4, height=2
         )
-        clear_button.grid(row=4, column=0, padx=5, pady=5)
+        clear_button.grid(row=5, column=0, padx=5, pady=5)
 
         # Submit button
         submit_button = tk.Button(
             self.canvas, text="Submit", font=("Helvetica", 20),
             command=self.submit_display, width=8, height=2
         )
-        submit_button.grid(row=4, column=2, padx=5, pady=5)
+        submit_button.grid(row=5, column=2, padx=5, pady=5)
         
     def button_pressed(self, value):
         current_text = self.display.get()
