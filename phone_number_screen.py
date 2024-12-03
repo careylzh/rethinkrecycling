@@ -46,21 +46,21 @@ class PhoneNumberScreen:
         
         for (text, row, col) in buttons:
             button = tk.Button(
-                self.canvas, text=text, font=("Helvetica", 20),
+                self.canvas, text=text, font=("Helvetica", 10),
                 command=lambda t=text: self.button_pressed(t), width=4, height=2
             )
             button.grid(row=row, column=col, padx=5, pady=5)
             
         # Clear button
         clear_button = tk.Button(
-            self.canvas, text="C", font=("Helvetica", 20),
+            self.canvas, text="C", font=("Helvetica", 10),
             command=self.clear_display, width=4, height=2
         )
         clear_button.grid(row=5, column=0, padx=5, pady=5)
 
         # Submit button
         submit_button = tk.Button(
-            self.canvas, text="Submit", font=("Helvetica", 20),
+            self.canvas, text="Submit", font=("Helvetica", 10),
             command=self.submit_display, width=8, height=2
         )
         submit_button.grid(row=5, column=2, padx=5, pady=5)
