@@ -25,30 +25,43 @@ class AnimationA:
         else:
             self.canvas.after(50, self.animate)
 
-class AnimationB:
+class SplashScreen:
     def __init__(self, canvas):
         self.canvas = canvas
-        self.oval = None
+        self.text = None
         self.dy = 5
         self.running = False
+        self.blinking_label = None
 
     def start(self, callback):
-        self.oval = self.canvas.create_oval(200, 200, 250, 250, fill="blue")
         self.running = True
         self.callback = callback
-        self.animate()
-
-    def animate(self):
-        if not self.running:
-            return
-
-        self.canvas.move(self.oval, 0, self.dy)
-        _, y1, _, y2 = self.canvas.coords(self.oval)
-        if y2 > 400:  # Stop condition
-            self.running = False
-            self.callback()  # Trigger next animation
+        self.blinking_label = tk.Label(
+            self.canvas,
+            text="Insert 1 bottle to begin",
+            font=("Arcade", 24),
+            fg="green",
+            bg="white"
+        )
+        self.blinking_label.pack(expand=True)
+        
+        # Blink state
+        self.blink_visible = True
+        
+        # Start blinking effect
+        self.blink_text()
+    
+    def blink_text(self):
+        if self.blink_visible:
+            self.blinking_label.config(fg="black")  # Hide text
         else:
-            self.canvas.after(50, self.animate)
+            self.blinking_label.config(fg="white")  # Show text
+        
+        # Toggle state
+        self.blink_visible = not self.blink_visible
+        
+        # Schedule next blink
+        self.canvas.after(500, self.blink_text)  # Blink every 500ms
 
 from itertools import cycle
 
@@ -115,6 +128,7 @@ class LoadingScreen:
         self.running = True
         self.callback = callback
         self.move_pacman()
+        self.button = None
 
     # def animate(self):
     #     if not self.running:
@@ -137,8 +151,8 @@ class LoadingScreen:
         try:
             if pacman_coords[2] >= pellet_coords[0]:
                 self.canvas.delete(self.pellet)
-                self.canvas.create_text(250, 150, text=f"Bottle Processed! \n You have won ${self.calculated_reward_amount}", font=("Arial", 14), fill="green")
-                self.callback()
+                # self.canvas.create_text(250, 150, text=f"Bottle Processed! \n You have won ${self.calculated_reward_amount}", font=("Arial", 14), fill="green")
+                self.play_next_animation()
                 return
         except IndexError:
             return
@@ -154,6 +168,16 @@ class LoadingScreen:
         if pacman_coords[2] < 500:
             self.canvas.after(100, self.move_pacman)
 
+    def play_next_animation(self):
+        # Create a button
+        self.button = tk.Button(self.canvas, text="Click Me", command=self.callback())
+
+        # Add the button to the canvas at the bottom-right corner
+        self.canvas.create_window(
+        600, 290,  # Coordinates (x, y) on the canvas
+        anchor="center",  # Aligns the button's center corner at this position
+        window=self.button
+    )
 # Create the main Tkinter window
 # if __name__ == "__main__":
 #     canvas = tk.Tk()

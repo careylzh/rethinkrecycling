@@ -5,10 +5,10 @@ import random
 import tkinter as tk
 
 #internal software modules 
-from loading_screen import LoadingScreen
 from lose_animation import LoseAnimation
 from rewards import *
 from sample_codes.animations_integration_test.animation_classes_test import *
+from phone_number_screen import PhoneNumberScreen
 
 total_prize_pool = 5.00
 
@@ -42,19 +42,25 @@ while True:
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
-     USER_PULLS_SLOT_MACHINE_HANDLE = True 
+     USER_PULLS_SLOT_MACHINE_HANDLE = True
+     # animations = [SplashScreen(canvas)]
+     # run_animations()
      if(USER_PULLS_SLOT_MACHINE_HANDLE == True):
+          canvas.delete("all")
           calculate_reward_amount=calculate_reward()
           animations = [
-               AnimationB(canvas),
-               LoadingScreen(canvas, calculate_reward_amount)
+               # SplashScreen(canvas),
+               LoadingScreen(canvas, calculate_reward_amount),
+               PhoneNumberScreen(canvas, calculate_reward_amount),
           ]
           run_animations()
           USER_PULLS_SLOT_MACHINE_HANDLE = False
 
-          #Ask for user input and write phone number and reward to CSV
-          # phone_number = input("Kindly key in your phone number to redeem the prize")
-          # write_to_csv(calculate_reward_amount, phone_number)
           
      root.mainloop()
      root.destroy()
+
+'''
+TODO:
+- destroy animation on the canvas after phone number submission, play splash screen
+'''
