@@ -85,6 +85,14 @@ class PhoneNumberScreen:
         self.canvas.delete("all", tk.END)
         for widget in self.canvas.winfo_children():
             widget.destroy()
+
+        self.canvas.create_text(
+          200, 100,  # Coordinates: x=200, y=100
+          text="Insert 1 Bottle to Begin!",  # The text to display
+          font=("Arcade", 20),  # Font and size
+          fill="green"  # Text color
+          )     
+        self.canvas.pack()
         # self.callback()
 
 # if __name__ == "__main__":
