@@ -82,7 +82,7 @@ class PhoneNumberScreen:
         #Ask for user input and write phone number and reward to CSV
         write_to_csv(self.calculated_reward_amount, current_text)
         self.clear_display()
-        # self.canvas.delete("all")
+        self.canvas.delete("all")
         # self.callback()
 
 # if __name__ == "__main__":
