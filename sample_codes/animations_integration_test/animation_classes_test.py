@@ -131,6 +131,8 @@ class LoadingScreen:
         self.callback = callback
         self.move_pacman()
         self.button = None
+        # sleep(5)
+        self.callback()
 
     # def animate(self):
     #     if not self.running:
@@ -154,8 +156,6 @@ class LoadingScreen:
             if pacman_coords[2] >= pellet_coords[0]:
                 self.canvas.delete(self.pellet)
                 # self.canvas.create_text(250, 150, text=f"Bottle Processed! \n You have won ${self.calculated_reward_amount}", font=("Arial", 14), fill="green")
-                sleep(5)
-                self.play_next_animation()
                 return
         except IndexError:
             return
