@@ -38,6 +38,7 @@ def run_animations(animations):
                #      pass
           current_animation = animations.pop(0)
           current_animation.start()  # Start current animation
+          sleep(5)
           current_animation = animations.pop(0)
           current_animation.start()
 
