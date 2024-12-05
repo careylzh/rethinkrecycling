@@ -120,7 +120,7 @@ class LoadingScreen:
         # # Start the animation
         # self.move_pacman()
 
-    def start(self, callback):
+    def start(self):
         # Initialize game elements
         print("start in LoadingScreen called")
         self.pacman_open = True
@@ -128,12 +128,12 @@ class LoadingScreen:
         self.pellet = self.canvas.create_oval(400, 75, 420, 95, fill="blue", outline="blue")
         self.frames = cycle([(40, 40, 60, 60), (30, 30, 70, 70), (20, 20, 80, 80), (10, 10, 90, 90)])
         self.running = True
-        print(callback)
-        self.callback = callback
+        # print(callback)
+        # self.callback = callback
         self.move_pacman()
         self.button = None
         # sleep(5)
-        self.callback()
+        # self.callback()
 
     # def animate(self):
     #     if not self.running:
@@ -172,9 +172,9 @@ class LoadingScreen:
         if pacman_coords[2] < 500:
             self.canvas.after(100, self.move_pacman)
 
-    def play_next_animation(self):
-        # Create a button
-        self.callback()
+    # def play_next_animation(self):
+    #     # Create a button
+    #     self.callback()
         # self.button = tk.Button(self.canvas, text="Click Me", command=self.callback())
 
         # Add the button to the canvas at the bottom-right corner

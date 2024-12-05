@@ -37,7 +37,9 @@ def run_animations(animations):
                # # app = WinAnimation(calculate_reward_amount)
                #      pass
           current_animation = animations.pop(0)
-          current_animation.start(run_animations(animations))  # Start current animation
+          current_animation.start()  # Start current animation
+          current_animation = animations.pop(0)
+          current_animation.start()
 
 def initiate_gameplay(x):
      canvas.delete("all")
