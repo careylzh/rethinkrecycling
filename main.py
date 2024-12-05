@@ -39,13 +39,19 @@ while True:
      root = tk.Tk()
      root.wm_attributes('-fullscreen', 'True')
      canvas = tk.Canvas(root, width=1280, height=800, bg="white")
+     canvas.create_text(
+          200, 100,  # Coordinates: x=200, y=100
+          text="Insert 1 Bottle to Begin!",  # The text to display
+          font=("Arcade", 20),  # Font and size
+          fill="green"  # Text color
+          )     
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
      USER_PULLS_SLOT_MACHINE_HANDLE = True
      # animations = [SplashScreen(canvas)]
      # run_animations()
-     if(USER_PULLS_SLOT_MACHINE_HANDLE == True):
+     if(USER_PULLS_SLOT_MACHINE_HANDLE == False):
           canvas.delete("all")
           calculate_reward_amount=calculate_reward()
           animations = [

@@ -34,6 +34,7 @@ class SplashScreen:
         self.blinking_label = None
 
     def start(self, callback):
+        print("start in SplashScreen called")
         self.running = True
         self.callback = callback
         self.blinking_label = tk.Label(
@@ -121,6 +122,7 @@ class LoadingScreen:
 
     def start(self, callback):
         # Initialize game elements
+        print("start in LoadingScreen called")
         self.pacman_open = True
         self.pacman = self.canvas.create_arc(50, 50, 100, 100, start=45, extent=270, fill="green", outline="yellow")
         self.pellet = self.canvas.create_oval(400, 75, 420, 95, fill="blue", outline="blue")
