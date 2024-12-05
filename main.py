@@ -45,7 +45,7 @@ def initiate_gameplay(x):
      animations = [
                # SplashScreen(canvas),
                PhoneNumberScreen(canvas, calculate_reward_amount),
-               LoadingScreen(canvas, calculate_reward_amount),
+               # LoadingScreen(canvas, calculate_reward_amount),
 
      ]
      run_animations(animations)
