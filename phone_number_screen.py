@@ -83,6 +83,8 @@ class PhoneNumberScreen:
         write_to_csv(self.calculated_reward_amount, current_text)
         self.clear_display()
         self.canvas.delete("all", tk.END)
+        for widget in self.canvas.winfo_children():
+            widget.destroy()
         # self.callback()
 
 # if __name__ == "__main__":
