@@ -128,6 +128,7 @@ class LoadingScreen:
         self.pellet = self.canvas.create_oval(400, 75, 420, 95, fill="blue", outline="blue")
         self.frames = cycle([(40, 40, 60, 60), (30, 30, 70, 70), (20, 20, 80, 80), (10, 10, 90, 90)])
         self.running = True
+        print(callback)
         self.callback = callback
         self.move_pacman()
         self.button = None
