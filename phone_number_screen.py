@@ -10,6 +10,7 @@ class PhoneNumberScreen:
         self.calculated_reward_string = None
 
     def start(self, callback):
+        print("callback in phone number screen: ", callback)
         self.canvas.delete("all")  # Deletes all objects on the canvas
         print("start in PhoneNumberScreen called")
 
