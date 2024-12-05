@@ -1,5 +1,5 @@
 #default python modules
-#import RPi.GPIO as RPI
+import RPi.GPIO as GPIO
 from time import sleep
 import random 
 import tkinter as tk
@@ -11,6 +11,9 @@ from sample_codes.animations_integration_test.animation_classes_test import *
 from phone_number_screen import PhoneNumberScreen
 
 total_prize_pool = 5.00
+switch_in = 12 # to update
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(switch_in, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 def calculate_reward():
      probability_list = [0,0,0,0.05,0.05,0.05,0.05,0.05,0.05,0.15]
@@ -20,7 +23,7 @@ def calculate_reward():
      calculate_reward_amount = round(chosen_prize*total_prize_pool,2)
      return calculate_reward_amount
 
-def run_animations():
+def run_animations(x):
      if animations:
           # control logic to displays win/lose amount and respective animations
           # print("calculate_reward_amount: ", calculate_reward_amount)
@@ -31,7 +34,26 @@ def run_animations():
                # # app = WinAnimation(calculate_reward_amount)
                #      pass
           current_animation = animations.pop(0)
-          current_animation.start(run_animations)  # Start current animation
+          current_animation.start(run_animations(x))  # Start current animation
+
+def run_animations_phone_number_screen(x):
+     if animations:
+          # control logic to displays win/lose amount and respective animations
+          # print("calculate_reward_amount: ", calculate_reward_amount)
+               # if(calculate_reward_amount == 0):   
+               # # app = LoseAnimation(calculate_reward_amount)
+               #      pass
+               # elif(calculate_reward_amount > 0 and calculate_reward_amount < total_prize_pool):
+               # # app = WinAnimation(calculate_reward_amount)
+               #      pass
+          current_animation = animations.pop(0)
+          current_animation.start()  # Start current animation
+
+# def gamble_start_test(x):
+#     print("gambling app has started")
+#     return
+
+
 
 while True:
 
@@ -42,23 +64,26 @@ while True:
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
-     USER_PULLS_SLOT_MACHINE_HANDLE = True
-     # animations = [SplashScreen(canvas)]
-     # run_animations()
-     if(USER_PULLS_SLOT_MACHINE_HANDLE == True):
-          canvas.delete("all")
-          calculate_reward_amount=calculate_reward()
-          animations = [
-               # SplashScreen(canvas),
-               LoadingScreen(canvas, calculate_reward_amount),
-               PhoneNumberScreen(canvas, calculate_reward_amount),
-          ]
-          run_animations()
-          USER_PULLS_SLOT_MACHINE_HANDLE = False
 
+     
+     animations = [SplashScreen(canvas)]
+     run_animations(1)
+     calculate_reward_amount=calculate_reward()
+     animations = [PhoneNumberScreen(canvas, calculate_reward_amount)]
+     GPIO.add_event_detect(switch_in, GPIO.BOTH, callback=run_animations_phone_number_screen, bouncetime=500)
+     # USER_PULLS_SLOT_MACHINE_HANDLE = GPIO.event_detected(switch_in)
+
+     # USER_PULLS_SLOT_MACHINE_HANDLE = True
+
+     # if(USER_PULLS_SLOT_MACHINE_HANDLE == True):
+     canvas.delete("all")
+     # run_animations()
+     # USER_PULLS_SLOT_MACHINE_HANDLE = False
           
      root.mainloop()
-     root.destroy()
+     # print("code pauses at animation loop")
+     # root.destroy()
+
 
 '''
 TODO:

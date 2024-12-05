@@ -1,5 +1,6 @@
 import tkinter as tk
-
+# from PIL import Image, ImageTk
+import RPi.GPIO as GPIO
 class AnimationA:
     def __init__(self, canvas):
         self.canvas = canvas
@@ -32,7 +33,16 @@ class SplashScreen:
         self.dy = 5
         self.running = False
         self.blinking_label = None
+        # Load an image using PIL (for formats like JPEG/PNG)
+        # Replace 'background.jpg' with the path to your image
+        # image_path = "background.jpg"
+        # bg_image = Image.open(image_path)
+        # bg_image = bg_image.resize((600, 400), Image.Resampling.LANCZOS)  # Use the new Resampling constant
+        # bg_image_tk = ImageTk.PhotoImage(bg_image)
 
+        # # Add the image to the canvas
+        # self.canvas.create_image(0, 0, anchor=tk.NW, image=bg_image_tk)
+        
     def start(self, callback):
         self.running = True
         self.callback = callback
@@ -50,6 +60,8 @@ class SplashScreen:
         
         # Start blinking effect
         self.blink_text()
+        
+        # self.callback()
     
     def blink_text(self):
         if self.blink_visible:
