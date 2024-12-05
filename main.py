@@ -4,6 +4,12 @@ from time import sleep
 import random 
 import tkinter as tk
 
+import RPi.GPIO as GPIO
+switch_in = 12 # to update
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(switch_in, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+
+
 #internal software modules 
 from lose_animation import LoseAnimation
 from rewards import *
@@ -20,7 +26,7 @@ def calculate_reward():
      calculate_reward_amount = round(chosen_prize*total_prize_pool,2)
      return calculate_reward_amount
 
-def run_animations():
+def run_animations(animations):
      if animations:
           # control logic to displays win/lose amount and respective animations
           # print("calculate_reward_amount: ", calculate_reward_amount)
@@ -31,7 +37,17 @@ def run_animations():
                # # app = WinAnimation(calculate_reward_amount)
                #      pass
           current_animation = animations.pop(0)
-          current_animation.start(run_animations)  # Start current animation
+          current_animation.start(run_animations(animations))  # Start current animation
+
+def initiate_gameplay(x):
+     canvas.delete("all")
+     calculate_reward_amount=calculate_reward()
+     animations = [
+               # SplashScreen(canvas),
+               LoadingScreen(canvas, calculate_reward_amount),
+               PhoneNumberScreen(canvas, calculate_reward_amount),
+     ]
+     run_animations(animations)
 
 while True:
 
@@ -51,18 +67,11 @@ while True:
      USER_PULLS_SLOT_MACHINE_HANDLE = True
      # animations = [SplashScreen(canvas)]
      # run_animations()
-     if(USER_PULLS_SLOT_MACHINE_HANDLE == False):
-          canvas.delete("all")
-          calculate_reward_amount=calculate_reward()
-          animations = [
-               # SplashScreen(canvas),
-               LoadingScreen(canvas, calculate_reward_amount),
-               PhoneNumberScreen(canvas, calculate_reward_amount),
-          ]
-          run_animations()
-          USER_PULLS_SLOT_MACHINE_HANDLE = False
+     # if(USER_PULLS_SLOT_MACHINE_HANDLE == False):
+        
+     #      USER_PULLS_SLOT_MACHINE_HANDLE = False
+     GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
 
-          
      root.mainloop()
      root.destroy()
 
