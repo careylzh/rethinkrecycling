@@ -1,13 +1,14 @@
 import tkinter as tk
 from rewards import *
 class PhoneNumberScreen:
-    def __init__(self, canvas, calculated_reward_amount):
+    def __init__(self, canvas, calculated_reward_amount, total_prize_pool):
         self.canvas = canvas
         self.display = None
         self.running = False
         self.instruction_label = None
         self.calculated_reward_amount = calculated_reward_amount
         self.calculated_reward_string = None
+        self.total_prize_pool = total_prize_pool
 
     def start(self):
         # print("callback in phone number screen: ", callback)
@@ -88,7 +89,7 @@ class PhoneNumberScreen:
 
         self.canvas.create_text(
           200, 100,  # Coordinates: x=200, y=100
-          text="Insert 1 Bottle to Begin!",  # The text to display
+          text=f"Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}",  # The text to display
           font=("Arcade", 20),  # Font and size
           fill="green"  # Text color
           )

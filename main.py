@@ -50,12 +50,13 @@ def initiate_crushing(x):
      print("total prize pool", total_prize_pool)
 
 def initiate_gameplay(x):
+     global total_prize_pool
      canvas.delete("all")
      calculate_reward_amount=calculate_reward()
      animations = [
                # SplashScreen(canvas),
                LoadingScreen(canvas, calculate_reward_amount),
-               PhoneNumberScreen(canvas, calculate_reward_amount),
+               PhoneNumberScreen(canvas, calculate_reward_amount, total_prize_pool),
 
      ]
      run_animations(animations)
