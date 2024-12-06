@@ -86,6 +86,7 @@ def after_submit_update_text():
                font=("Arcade", 20),  # Font and size
                fill="green"  # Text color
                )
+          bottle_count += 1
      else:
           canvas.itemconfig(after_submit_screen_butt, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
           bottle_count += 1
