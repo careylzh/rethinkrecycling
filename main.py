@@ -19,6 +19,7 @@ from sample_codes.animations_integration_test.animation_classes_test import *
 from phone_number_screen import PhoneNumberScreen
 
 total_prize_pool = 5.00
+bottle_count = 0
 
 def calculate_reward():
      global total_prize_pool
@@ -53,6 +54,7 @@ def initiate_crushing(x):
      total_prize_pool = round(total_prize_pool,2)
      print("total prize pool", total_prize_pool)
      update_text()
+     after_submit_update_text()
 
 def initiate_gameplay(x):
      global total_prize_pool
@@ -65,11 +67,29 @@ def initiate_gameplay(x):
 
      ]
      run_animations(animations)
+     global bottle_count 
+     bottle_count = 0
 
 def update_text():
     entry = tk.Entry(root)
     new_text = entry.get()  # Get the text from the entry widget
     canvas.itemconfig(splash_screen_prize_pool_text, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
+
+def after_submit_update_text():
+     global bottle_count
+     if bottle_count == 0:
+          canvas.delete("all")
+          global after_submit_screen_butt
+          after_submit_screen_butt = canvas.create_text(
+               200, 100,  # Coordinates: x=200, y=100
+               text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
+               font=("Arcade", 20),  # Font and size
+               fill="green"  # Text color
+               )
+     else:
+          canvas.itemconfig(after_submit_screen_butt, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
+          bottle_count += 1
+     
 
 while True:
 
