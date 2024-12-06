@@ -52,6 +52,7 @@ def initiate_crushing(x):
      total_prize_pool += 0.10
      total_prize_pool = round(total_prize_pool,2)
      print("total prize pool", total_prize_pool)
+     update_text()
 
 def initiate_gameplay(x):
      global total_prize_pool
@@ -65,13 +66,20 @@ def initiate_gameplay(x):
      ]
      run_animations(animations)
 
+def update_text():
+    entry = tk.Entry(root)
+    new_text = entry.get()  # Get the text from the entry widget
+    canvas.itemconfig(splash_screen_prize_pool_text, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
+
 while True:
 
      # Initialize animations
+     global root
      root = tk.Tk()
      root.wm_attributes('-fullscreen', 'True')
+     global canvas
      canvas = tk.Canvas(root, width=1280, height=800, bg="white")
-     canvas.create_text(
+     splash_screen_prize_pool_text = canvas.create_text(
           200, 100,  # Coordinates: x=200, y=100
           text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
           font=("Arcade", 20),  # Font and size
