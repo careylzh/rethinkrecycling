@@ -92,6 +92,7 @@ while True:
 
 
      root.mainloop()
+     print("code passes mainloop()")
      root.destroy()
 
 '''
