@@ -45,6 +45,7 @@ def run_animations(animations):
           current_animation.start()
 
 def initiate_crushing(x):
+     global total_prize_pool
      total_prize_pool += 0.10
 
 def initiate_gameplay(x):
