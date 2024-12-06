@@ -1,7 +1,7 @@
 import tkinter as tk
 from rewards import *
 class PhoneNumberScreen:
-    def __init__(self, canvas, calculated_reward_amount, total_prize_pool):
+    def __init__(self, canvas, calculated_reward_amount, total_prize_pool, root):
         self.canvas = canvas
         self.display = None
         self.running = False
@@ -9,6 +9,7 @@ class PhoneNumberScreen:
         self.calculated_reward_amount = calculated_reward_amount
         self.calculated_reward_string = None
         self.total_prize_pool = total_prize_pool
+        self.root = root
 
     def start(self):
         # print("callback in phone number screen: ", callback)
@@ -86,6 +87,8 @@ class PhoneNumberScreen:
         self.canvas.delete("all", tk.END)
         for widget in self.canvas.winfo_children():
             widget.destroy()
+
+        self.root.wm_attributes('-fullscreen', 'True')
 
         self.canvas.create_text(
           200, 100,  # Coordinates: x=200, y=100

@@ -63,7 +63,7 @@ def initiate_gameplay(x):
      animations = [
                # SplashScreen(canvas),
                LoadingScreen(canvas, calculate_reward_amount),
-               PhoneNumberScreen(canvas, calculate_reward_amount, total_prize_pool),
+               PhoneNumberScreen(canvas, calculate_reward_amount, total_prize_pool, root),
 
      ]
      run_animations(animations)
