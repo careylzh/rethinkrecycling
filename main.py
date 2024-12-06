@@ -44,6 +44,7 @@ def run_animations(animations):
 
 def initiate_gameplay(x):
      canvas.delete("all")
+     total_prize_pool += 0.10
      calculate_reward_amount=calculate_reward()
      animations = [
                # SplashScreen(canvas),
@@ -64,7 +65,13 @@ while True:
           text="Insert 1 Bottle to Begin!",  # The text to display
           font=("Arcade", 20),  # Font and size
           fill="green"  # Text color
-          )     
+          )    
+     canvas.create_text(
+          200, 300,  # Coordinates: x=200, y=100
+          text=f'Prize Pool: {total_prize_pool}',  # The text to display
+          font=("Arcade", 20),  # Font and size
+          fill="green"  # Text color
+          ) 
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
