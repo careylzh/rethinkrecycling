@@ -47,6 +47,7 @@ def run_animations(animations):
 def initiate_crushing(x):
      global total_prize_pool
      total_prize_pool += 0.10
+     total_prize_pool = round(total_prize_pool,2)
      print("total prize pool", total_prize_pool)
 
 def initiate_gameplay(x):
