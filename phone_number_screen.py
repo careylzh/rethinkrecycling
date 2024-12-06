@@ -89,6 +89,8 @@ class PhoneNumberScreen:
             widget.destroy()
 
         self.root.wm_attributes('-fullscreen', 'True')
+        
+        self.canvas.configure(width=1280, height=800, bg="white")
 
         self.canvas.create_text(
           200, 100,  # Coordinates: x=200, y=100
