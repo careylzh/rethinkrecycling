@@ -21,11 +21,14 @@ from phone_number_screen import PhoneNumberScreen
 total_prize_pool = 5.00
 
 def calculate_reward():
+     global total_prize_pool
      probability_list = [0,0,0,0.05,0.05,0.05,0.05,0.05,0.05,0.15]
      sleep(1)
      chosen_prize = random.choice(probability_list)
      print("chosen_prize: ", chosen_prize)
      calculate_reward_amount = round(chosen_prize*total_prize_pool,2)
+     total_prize_pool -= calculate_reward_amount
+     total_prize_pool = round(total_prize_pool,2)
      return calculate_reward_amount
 
 def run_animations(animations):
