@@ -91,7 +91,7 @@ class PhoneNumberScreen:
           text="Insert 1 Bottle to Begin!",  # The text to display
           font=("Arcade", 20),  # Font and size
           fill="green"  # Text color
-          )     
+          )
         self.canvas.pack()
         # self.callback()
 
