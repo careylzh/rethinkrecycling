@@ -68,16 +68,16 @@ while True:
      canvas = tk.Canvas(root, width=1280, height=800, bg="white")
      canvas.create_text(
           200, 100,  # Coordinates: x=200, y=100
-          text="Insert 1 Bottle to Begin!",  # The text to display
+          text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
           font=("Arcade", 20),  # Font and size
           fill="green"  # Text color
           )    
-     canvas.create_text(
-          200, 200,  # Coordinates: x=200, y=100
-          text=f'Prize Pool: {total_prize_pool}',  # The text to display
-          font=("Arcade", 20),  # Font and size
-          fill="green"  # Text color
-          ) 
+     # canvas.create_text(
+     #      200, 200,  # Coordinates: x=200, y=100
+     #      text=f'Prize Pool: {total_prize_pool}',  # The text to display
+     #      font=("Arcade", 20),  # Font and size
+     #      fill="green"  # Text color
+     #      ) 
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
