@@ -9,12 +9,12 @@ from PIL import Image, ImageTk
 import RPi.GPIO as GPIO
 switch_in = 12 # to update
 switch_in_crushing = 16
-entry_slot_pin = 18
+red_led_pin = 18
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(switch_in, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch_in_crushing, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(entry_slot_pin, GPIO.OUT)
-GPIO.output(entry_slot_pin, 1)
+GPIO.setup(red_led_pin, GPIO.OUT)
+GPIO.output(red_led_pin, 0)
 
 
 #internal software modules 
@@ -60,20 +60,22 @@ def initiate_crushing(x):
      print("total prize pool", total_prize_pool)
      update_text()
      after_submit_update_text()
+     GPIO.output(red_led_pin, 1)
 
 def initiate_gameplay(x):
      global total_prize_pool
-     canvas.delete("all")
-     calculate_reward_amount=calculate_reward()
-     animations = [
-               # SplashScreen(canvas),
-               LoadingScreen(canvas, calculate_reward_amount),
-               PhoneNumberScreen(canvas, calculate_reward_amount, total_prize_pool, root),
+     global bottle_count
+     if bottle_count != 0:
+          canvas.delete("all")
+          calculate_reward_amount=calculate_reward()
+          animations = [
+                    # SplashScreen(canvas),
+                    LoadingScreen(canvas, calculate_reward_amount),
+                    PhoneNumberScreen(canvas, calculate_reward_amount, total_prize_pool, root),
 
-     ]
-     run_animations(animations)
-     global bottle_count 
-     bottle_count = 0
+          ]
+          run_animations(animations)
+          bottle_count = 0
 
 def update_text():
     entry = tk.Entry(root)
@@ -95,7 +97,9 @@ def after_submit_update_text():
      else:
           canvas.itemconfig(after_submit_screen_butt, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
           bottle_count += 1
-     
+
+def red_light_off(x):
+     GPIO.output(red_led_pin, 0)
 
 while True:
 
@@ -138,7 +142,7 @@ while True:
      #      USER_PULLS_SLOT_MACHINE_HANDLE = False
      GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
      GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
-
+     GPIO.add_event_detect(switch_in_crushing, GPIO.FALLING, callback=red_light_off, bouncetime=500)
 
      root.mainloop()
      print("code passes mainloop()")
