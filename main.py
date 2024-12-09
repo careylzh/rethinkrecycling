@@ -105,6 +105,16 @@ while True:
      root.wm_attributes('-fullscreen', 'True')
      global canvas
      canvas = tk.Canvas(root, width=1280, height=800, bg="white")
+     
+
+     image_path = "background.png"
+     bg_image = Image.open(image_path)
+     bg_image = bg_image.resize((800, 600), Image.Resampling.LANCZOS)  # Use the new Resampling constant
+     bg_image_tk = ImageTk.PhotoImage(bg_image)
+
+     # Add the image to the canvas
+     canvas.create_image(0, 0, anchor=tk.NW, image=bg_image_tk)
+
      splash_screen_prize_pool_text = canvas.create_text(
           200, 100,  # Coordinates: x=200, y=100
           text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
@@ -117,15 +127,6 @@ while True:
      #      font=("Arcade", 20),  # Font and size
      #      fill="green"  # Text color
      #      ) 
-
-     image_path = "background.png"
-     bg_image = Image.open(image_path)
-     bg_image = bg_image.resize((1280, 800), Image.Resampling.LANCZOS)  # Use the new Resampling constant
-     bg_image_tk = ImageTk.PhotoImage(bg_image)
-
-     # Add the image to the canvas
-     canvas.create_image(0, 0, anchor=tk.NW, image=bg_image_tk)
-
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
