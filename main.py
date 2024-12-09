@@ -9,10 +9,12 @@ from PIL import Image, ImageTk
 import RPi.GPIO as GPIO
 switch_in = 12 # to update
 switch_in_crushing = 16
+switch_in_for_redlight = 16
 red_led_pin = 18
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(switch_in, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch_in_crushing, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(switch_in_for_redlight, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(red_led_pin, GPIO.OUT)
 GPIO.output(red_led_pin, 0)
 
@@ -142,7 +144,7 @@ while True:
      #      USER_PULLS_SLOT_MACHINE_HANDLE = False
      GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
      GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
-     GPIO.add_event_detect(switch_in_crushing, GPIO.FALLING, callback=red_light_off, bouncetime=500)
+     GPIO.add_event_detect(switch_in_for_redlight, GPIO.FALLING, callback=red_light_off, bouncetime=500)
 
      root.mainloop()
      print("code passes mainloop()")
