@@ -3,6 +3,8 @@
 from time import sleep
 import random 
 import tkinter as tk
+from PIL import Image, ImageTk
+
 
 import RPi.GPIO as GPIO
 switch_in = 12 # to update
@@ -112,6 +114,15 @@ while True:
      #      font=("Arcade", 20),  # Font and size
      #      fill="green"  # Text color
      #      ) 
+
+     image_path = "background.png"
+     bg_image = Image.open(image_path)
+     bg_image = bg_image.resize((1280, 800), Image.Resampling.LANCZOS)  # Use the new Resampling constant
+     bg_image_tk = ImageTk.PhotoImage(bg_image)
+
+     # Add the image to the canvas
+     canvas.create_image(0, 0, anchor=tk.NW, image=bg_image_tk)
+
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
