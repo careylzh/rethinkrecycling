@@ -9,9 +9,12 @@ from PIL import Image, ImageTk
 import RPi.GPIO as GPIO
 switch_in = 12 # to update
 switch_in_crushing = 16
+entry_slot_pin = 18
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(switch_in, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch_in_crushing, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(entry_slot_pin, GPIO.OUT)
+GPIO.output(entry_slot_pin, 1)
 
 
 #internal software modules 
