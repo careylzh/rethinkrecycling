@@ -147,18 +147,7 @@ class LoadingScreen:
         # Continue animation
         if pacman_coords[2] < 500:
             self.canvas.after(100, self.move_pacman)
-
-    # def play_next_animation(self):
-    #     # Create a button
-    #     self.callback()
-        # self.button = tk.Button(self.canvas, text="Click Me", command=self.callback())
-
-        # Add the button to the canvas at the bottom-right corner
-    #     self.canvas.create_window(
-    #     600, 290,  # Coordinates (x, y) on the canvas
-    #     anchor="center",  # Aligns the button's center corner at this position
-    #     window=self.button
-    # )
+            
 # Create the main Tkinter window
 # if __name__ == "__main__":
 #     canvas = tk.Tk()

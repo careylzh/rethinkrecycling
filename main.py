@@ -20,9 +20,8 @@ GPIO.output(red_led_pin, 0)
 
 
 #internal software modules 
-from lose_animation import LoseAnimation
 from rewards import *
-from sample_codes.animations_integration_test.animation_classes_test import *
+from animation_classes_library import *
 from phone_number_screen import PhoneNumberScreen
 
 total_prize_pool = 5.00
@@ -129,13 +128,8 @@ while True:
           )    
      canvas.pack()
 
-     #TODO: refactor this section when GPIO wiring code is complete.
      USER_PULLS_SLOT_MACHINE_HANDLE = True
      # animations = [SplashScreen(canvas)]
-     # run_animations()
-     # if(USER_PULLS_SLOT_MACHINE_HANDLE == False):
-        
-     #      USER_PULLS_SLOT_MACHINE_HANDLE = False
      GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
      GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
      #GPIO.add_event_detect(switch_in_for_redlight, GPIO.FALLING, callback=red_light_off, bouncetime=500)
