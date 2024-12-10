@@ -86,6 +86,7 @@ class PhoneNumberScreen:
         self.clear_display()
         # self.canvas.delete("all", tk.END)
         for widget in self.canvas.winfo_children():
+            print("widget on canvas passed to phone_number_screen:", widget)
             widget.destroy()
 
         self.root.wm_attributes('-fullscreen', 'True')
