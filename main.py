@@ -55,15 +55,17 @@ def run_animations(animations):
           current_animation.start()
 
 def initiate_crushing(x):
+     print("initiate_crushing called...\n")
      global total_prize_pool
      total_prize_pool += 0.10
      total_prize_pool = round(total_prize_pool,2)
      print("total prize pool", total_prize_pool)
-     update_text()
+     # update_text()
      after_submit_update_text()
      GPIO.output(red_led_pin, 1)
 
 def initiate_gameplay(x):
+     print("initiate_gameplay called...\n")
      global total_prize_pool
      global bottle_count
      if bottle_count != 0:
@@ -78,10 +80,10 @@ def initiate_gameplay(x):
           run_animations(animations)
           bottle_count = 0
 
-def update_text():
-    entry = tk.Entry(root)
-    new_text = entry.get()  # Get the text from the entry widget
-    canvas.itemconfig(splash_screen_prize_pool_text, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
+# def update_text():
+#     entry = tk.Entry(root)
+#     new_text = entry.get()  # Get the text from the entry widget
+#     canvas.itemconfig(splash_screen_prize_pool_text, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
 
 def after_submit_update_text():
      global bottle_count
@@ -111,7 +113,6 @@ while True:
      global canvas
      canvas = tk.Canvas(root, width=1280, height=800, bg="white")
      
-
      image_path = "background.png"
      bg_image = Image.open(image_path)
      bg_image = bg_image.resize((800, 600), Image.Resampling.LANCZOS)  # Use the new Resampling constant
