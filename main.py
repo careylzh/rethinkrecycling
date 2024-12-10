@@ -9,8 +9,8 @@ from PIL import Image, ImageTk
 import RPi.GPIO as GPIO
 switch_in = 12 # to update
 switch_in_crushing = 16
-switch_in_for_redlight = 16
 red_led_pin = 18
+red_led_stat = 0
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(switch_in, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch_in_crushing, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
@@ -57,12 +57,19 @@ def run_animations(animations):
 
 def initiate_crushing(x):
      global total_prize_pool
-     total_prize_pool += 0.10
-     total_prize_pool = round(total_prize_pool,2)
-     print("total prize pool", total_prize_pool)
-     update_text()
-     after_submit_update_text()
-     GPIO.output(red_led_pin, 1)
+     if red_led_stat == 0:
+          total_prize_pool += 0.10
+          total_prize_pool = round(total_prize_pool,2)
+          print("total prize pool", total_prize_pool)
+          update_text()
+          after_submit_update_text()
+          GPIO.output(red_led_pin, 1)
+          red_led_stat = 1
+     else:
+          red_led_stat = 0
+          sleep(2)
+          GPIO.output(red_led_pin, 0)
+
 
 def initiate_gameplay(x):
      global total_prize_pool
@@ -143,8 +150,7 @@ while True:
         
      #      USER_PULLS_SLOT_MACHINE_HANDLE = False
      GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
-     GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
-     #GPIO.add_event_detect(switch_in_for_redlight, GPIO.FALLING, callback=red_light_off, bouncetime=500)
+     GPIO.add_event_detect(switch_in_crushing, GPIO.BOTH, callback=initiate_crushing, bouncetime=500)
 
      root.mainloop()
      print("code passes mainloop()")
