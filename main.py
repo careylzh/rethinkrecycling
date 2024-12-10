@@ -87,18 +87,30 @@ def initiate_gameplay(x):
 
 def after_submit_update_text():
      global bottle_count
+     global after_submit_screen_butt
+     global splash_screen_prize_pool_text
      if bottle_count == 0:
-          canvas.delete("all")
-          global after_submit_screen_butt
+          canvas.delete("after_submit_screen_butt")
+          canvas.delete("splash_screen_prize_pool_text")
           after_submit_screen_butt = canvas.create_text(
                400, 100,  # Coordinates: x=400, y=100
                text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
                font=("Arcade", 20),  # Font and size
-               fill="green"  # Text color
+               fill="green",
+                 tags="after_submit_screen_butt"  # Text color
                )
           bottle_count += 1
      else:
-          canvas.itemconfig(after_submit_screen_butt, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
+          canvas.delete("after_submit_screen_butt")
+          canvas.delete("splash_screen_prize_pool_text")
+          after_submit_screen_butt = canvas.create_text(
+               400, 100,  # Coordinates: x=400, y=100
+               text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
+               font=("Arcade", 20),  # Font and size
+               fill="green",
+                 tags="after_submit_screen_butt"  # Text color
+               )
+          # canvas.itemconfig(after_submit_screen_butt, text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}')  # Update the text
           bottle_count += 1
 
 def red_light_off(x):
@@ -120,12 +132,13 @@ while True:
 
      # Add the image to the canvas
      canvas.create_image(0, 0, anchor=tk.NW, image=bg_image_tk)
-
+     global splash_screen_prize_pool_text
      splash_screen_prize_pool_text = canvas.create_text(
           400, 100,  # Coordinates: x=400, y=100
           text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
           font=("Arcade", 20),  # Font and size
-          fill="white"  # Text color
+          fill="white",  # Text color
+          tags="splash_screen_prize_pool_text"
           )    
      canvas.pack()
 

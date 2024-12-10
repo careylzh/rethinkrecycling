@@ -97,7 +97,8 @@ class PhoneNumberScreen:
           400, 100,  # Coordinates: x=400, y=100
           text=f"Insert 1 Bottle to Begin! \n Prize Pool: {self.total_prize_pool}",  # The text to display
           font=("Arcade", 20),  # Font and size
-          fill="green"  # Text color
+          fill="green",  # Text color
+          tags="after_submit_screen_butt"
           )
         self.canvas.pack()
         # self.callback()
