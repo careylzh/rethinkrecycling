@@ -84,7 +84,7 @@ class PhoneNumberScreen:
         #Ask for user input and write phone number and reward to CSV
         write_to_csv(self.calculated_reward_amount, current_text)
         self.clear_display()
-        self.canvas.delete("all", tk.END)
+        # self.canvas.delete("all", tk.END)
         for widget in self.canvas.winfo_children():
             widget.destroy()
 
