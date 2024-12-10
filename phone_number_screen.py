@@ -93,7 +93,7 @@ class PhoneNumberScreen:
         self.canvas.configure(width=1280, height=800, bg="white")
 
         self.canvas.create_text(
-          200, 100,  # Coordinates: x=200, y=100
+          400, 100,  # Coordinates: x=400, y=100
           text=f"Insert 1 Bottle to Begin! \n Prize Pool: {self.total_prize_pool}",  # The text to display
           font=("Arcade", 20),  # Font and size
           fill="green"  # Text color

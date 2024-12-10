@@ -90,7 +90,7 @@ def after_submit_update_text():
           canvas.delete("all")
           global after_submit_screen_butt
           after_submit_screen_butt = canvas.create_text(
-               200, 100,  # Coordinates: x=200, y=100
+               400, 100,  # Coordinates: x=400, y=100
                text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
                font=("Arcade", 20),  # Font and size
                fill="green"  # Text color
@@ -122,17 +122,11 @@ while True:
      canvas.create_image(0, 0, anchor=tk.NW, image=bg_image_tk)
 
      splash_screen_prize_pool_text = canvas.create_text(
-          400, 100,  # Coordinates: x=200, y=100
+          400, 100,  # Coordinates: x=400, y=100
           text=f'Insert 1 Bottle to Begin! \n Prize Pool: {total_prize_pool}',  # The text to display
           font=("Arcade", 20),  # Font and size
           fill="white"  # Text color
           )    
-     # canvas.create_text(
-     #      200, 200,  # Coordinates: x=200, y=100
-     #      text=f'Prize Pool: {total_prize_pool}',  # The text to display
-     #      font=("Arcade", 20),  # Font and size
-     #      fill="green"  # Text color
-     #      ) 
      canvas.pack()
 
      #TODO: refactor this section when GPIO wiring code is complete.
@@ -149,8 +143,3 @@ while True:
      root.mainloop()
      print("code passes mainloop()")
      root.destroy()
-
-'''
-TODO:
-- destroy animation on the canvas after phone number submission, play splash screen
-'''
