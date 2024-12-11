@@ -92,7 +92,7 @@ root = tk.Tk()
 # canvas = tk.Canvas(root, width=1280, height=800, bg="white")
 # canvas.pack()
 
-# background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
+background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
 # background_images = [
 #     f"Win Bin UIUX screens-{str(i).zfill(2)}.png" for i in range(1, 26)
 # ]
