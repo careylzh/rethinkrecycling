@@ -95,8 +95,11 @@ root.wm_attributes('-fullscreen', 'True')
 # canvas.pack()
 
 # background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
+# background_images = [
+#     f"test{i}.png" for i in range(1, 24)
+# ]
 background_images = [
-    f"test{i}.png" for i in range(1, 24)
+    "newww-01.png","newww-02.png"
 ]
 print(background_images)
 
