@@ -92,10 +92,10 @@ root.wm_attributes('-fullscreen', 'True')
 # canvas = tk.Canvas(root, width=1280, height=800, bg="black")
 # canvas.pack()
 
-background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
-# background_images = [
-#     f"Win Bin UIUX screens-{str(i).zfill(2)}.png" for i in range(1, 26)
-# ]
+# background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
+background_images = [
+    f"Artboard 1 copy {str(i).zfill(2)}.png" for i in range(1, 25)
+]
 
 GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
 GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
