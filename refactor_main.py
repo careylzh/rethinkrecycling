@@ -54,10 +54,10 @@ GPIO.setup(switch_in_crushing, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(red_led_pin, GPIO.OUT)
 GPIO.output(red_led_pin, 0)
 
-global total_prize_pool
-total_prize_pool = 5.00
-global root
-global canvas
+# global total_prize_pool
+# total_prize_pool = 5.00
+# global root
+# global canvas
 root = tk.Tk()
 root.wm_attributes('-fullscreen', 'True')
 canvas = tk.Canvas(root, width=1280, height=800, bg="white")
@@ -69,15 +69,16 @@ GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bounce
 GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
 
 current_background_image = ImageTk.PhotoImage(file=background_images[0])
-global bg_label 
+# global bg_label 
 bg_label = tk.Label(root, image=current_background_image)
-bg_label.place(relwidth=1, relheight=1)
+bg_label.pack()
+# bg_label.place(relwidth=1, relheight=1)
 # bg_label.pack()
 
 def initiate_crushing(x):
-    global root
-    global canvas
-    global bg_label
+    # global root
+    # global canvas
+    # global bg_label
     print("user pushed lever. initiate_crushing called...\n")
     # bg_label.destroy()
     # OLD
@@ -98,9 +99,9 @@ def initiate_crushing(x):
     #  print("total prize pool", total_prize_pool)
     #  # update_text()
 
-def initiate_gameplay(x):
-    print("user pulled lever. initiate_gameplay called...\n")
-    global total_prize_pool
+# def initiate_gameplay(x):
+#     print("user pulled lever. initiate_gameplay called...\n")
+#     global total_prize_pool
 
 #async interruptions which trigger screen animations by changing SCREEN_STATE - placing a bottle (ultrasonic) and    
 
