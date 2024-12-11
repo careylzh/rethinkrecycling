@@ -20,7 +20,7 @@ class PhoneNumberScreen:
 
     def start(self):
         # print("callback in phone number screen: ", callback)
-        self.canvas.delete("all")  # Deletes all objects on the canvas
+        # self.canvas.delete("all")  # Deletes all objects on the canvas
         print("start in PhoneNumberScreen called")
 
         # Create a display to show the numbers being pressed
