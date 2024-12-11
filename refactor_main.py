@@ -25,7 +25,7 @@ from phone_number_screen import PhoneNumberScreen
 #     #  total_prize_pool = round(total_prize_pool,2)
 #     #  print("total prize pool", total_prize_pool)
 #     #  # update_text()
-
+i=0
 def initiate_crushing(x):
     # global root
     # global canvas
@@ -38,12 +38,13 @@ def initiate_crushing(x):
     # bg_label = tk.Label(root, image=current_background_image, tags="bg_label")
     # bg_label.place(relwidth=1, relheight=1)
     # bg_label.pack()
-
-    new_image = Image.open("test2.png")
+    i+=1
+    new_image = Image.open(background_images[i])
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-
+    if(i==23):
+        i=0
 
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
