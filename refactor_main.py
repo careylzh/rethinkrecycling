@@ -39,7 +39,7 @@ def initiate_crushing(x):
     # bg_label.place(relwidth=1, relheight=1)
     # bg_label.pack()
 
-    new_image = Image.open("5-background-win.png").resize((1280, 800))
+    new_image = Image.open("Win Bin UIUX screens-01.png").resize((1280, 800))
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
@@ -48,10 +48,16 @@ def initiate_crushing(x):
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
     # global total_prize_pool
-    new_image = Image.open("2-background-win.png").resize((1280, 800))
+    new_image = Image.open("Win Bin UIUX screens-02.png").resize((1280, 800))
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image
+
+    # sleep(2)
+    # new_image = Image.open("2-background-no-prize.png").resize((1280, 800))
+    # new_tk_image = ImageTk.PhotoImage(new_image)
+    # bg_label.configure(image=new_tk_image)
+    # bg_label.image = new_tk_image
 
 #DEFINE states = 1,2,3,4,5 
 '''
@@ -86,7 +92,10 @@ root = tk.Tk()
 # canvas = tk.Canvas(root, width=1280, height=800, bg="white")
 # canvas.pack()
 
-background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
+# background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
+background_images = [
+    f"Win Bin UIUX screens-{str(i).zfill(2)}.png" for i in range(1, 26)
+]
 
 GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
 GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
