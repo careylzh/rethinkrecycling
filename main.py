@@ -24,9 +24,9 @@ US_sensor_trig = 22
 US_sensor_ech = 11
 from gpiozero import DistanceSensor
 
-
-def run_us_sensor():
-     try:
+import asyncio
+async def run_us_sensor():
+     while True:
           GPIO.setup(US_sensor_trig, GPIO.OUT)
           GPIO.setup(US_sensor_ech, GPIO.IN)
 
@@ -45,17 +45,17 @@ def run_us_sensor():
           GPIO.output(US_sensor_trig, GPIO.LOW)
 
           while GPIO.input(US_sensor_ech)==0:
-               print("echo 0")
+               #print("echo 0")
                pulse_start_time = time.time()
           while GPIO.input(US_sensor_ech)==1:
-               print("echo 1")
+               #print("echo 1")
                pulse_end_time = time.time()
 
           pulse_duration = pulse_end_time - pulse_start_time
           distance = round(pulse_duration * 17150, 2)
           print ("Distance:",distance,"cm")
-     finally:
-          print("sensor failed")
+          sleep(3)
+
 
 
 #internal software modules 
@@ -181,7 +181,8 @@ while True:
           tags="splash_screen_prize_pool_text"
           )    
      canvas.pack()
-     run_us_sensor()
+    
+     asyncio.create_task(run_us_sensor())
 
      USER_PULLS_SLOT_MACHINE_HANDLE = True
      # animations = [SplashScreen(canvas)]
