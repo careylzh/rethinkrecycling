@@ -39,7 +39,7 @@ def initiate_crushing(x):
     # bg_label.place(relwidth=1, relheight=1)
     # bg_label.pack()
 
-    new_image = Image.open("image.png")
+    new_image = Image.open("Win Bin UIUX screens-26.png")
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
