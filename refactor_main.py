@@ -96,6 +96,7 @@ root.wm_attributes('-fullscreen', 'True')
 background_images = [
     f"test{str(i).zfill(2)}.png" for i in range(1, 25)
 ]
+print(background_images)
 
 GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
 GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
