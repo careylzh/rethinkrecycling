@@ -39,7 +39,7 @@ def initiate_crushing(x):
     # bg_label.place(relwidth=1, relheight=1)
     # bg_label.pack()
 
-    new_image = Image.open("Win Bin UIUX screens-01.png").resize((1280, 800))
+    new_image = Image.open("image.png")
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
@@ -48,7 +48,7 @@ def initiate_crushing(x):
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
     # global total_prize_pool
-    new_image = Image.open("Win Bin UIUX screens-02.png").resize((1280, 800))
+    new_image = Image.open("Win Bin UIUX screens-02.png")
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image
