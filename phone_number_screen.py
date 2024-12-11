@@ -27,12 +27,12 @@ class PhoneNumberScreen:
         if(self.calculated_reward_amount == 0):
             self.instruction_label = tk.Label(
                 self.canvas, text=f"Bottle processed! You have won another chance to recycle. Key in your phone number and receive rewards at the end of today. Happy recycling!",
-                font=("Helvetica", 16), wraplength=300, justify="center"
+                font=("Helvetica", 30), wraplength=300, justify="center", fg='white', bg='blue'
             )
         else:
             self.instruction_label = tk.Label(
                 self.canvas, text=f"Bottle processed! You have won ${self.calculated_reward_amount}. Key in your phone number and receive rewards at the end of today. Happy recycling!",
-                font=("Helvetica", 16), wraplength=300, justify="center"
+                font=("Helvetica", 30), wraplength=300, justify="center", fg='white', bg='blue'
             )
        
         self.instruction_label.grid(row=0, column=0, columnspan=3, pady=(10, 5))
