@@ -88,7 +88,7 @@ GPIO.output(red_led_pin, 0)
 # global root
 # global canvas
 root = tk.Tk()
-# root.wm_attributes('-fullscreen', 'True')
+root.wm_attributes('-fullscreen', 'True')
 # canvas = tk.Canvas(root, width=1280, height=800, bg="white")
 # canvas.pack()
 
