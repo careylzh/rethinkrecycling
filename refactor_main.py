@@ -50,7 +50,7 @@ def initiate_crushing(x):
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
     # global total_prize_pool
-    new_image = Image.open("Win Bin UIUX screens-02.png")
+    new_image = Image.open("newww-01.png")
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image
