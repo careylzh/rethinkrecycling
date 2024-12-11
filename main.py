@@ -9,8 +9,8 @@ from PIL import Image, ImageTk
 import RPi.GPIO as GPIO
 switch_in = 12 # to update
 switch_in_crushing = 16
-switch_in_for_redlight = 16
 red_led_pin = 18
+
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(switch_in, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(switch_in_crushing, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
@@ -18,6 +18,31 @@ GPIO.setup(switch_in_crushing, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(red_led_pin, GPIO.OUT)
 GPIO.output(red_led_pin, 0)
 
+#for ultrasonic sensor
+US_sensor_trig = 22
+US_sensor_ech = 32
+from gpiozero import DistanceSensor
+
+global sensor 
+sensor = DistanceSensor(trigger=US_sensor_trig, echo=US_sensor_ech)
+
+def run_us_sensor():
+     global sensor
+     while True:
+          # Wait 2 seconds
+          sleep(2)
+          
+          # Get the distance in metres
+          distance = sensor.distance
+
+          # But we want it in centimetres
+          distance = sensor.distance * 100
+
+          # We would get a large decimal number so we will round it to 2 places
+          distance = round(sensor.distance, 2)
+
+          # Print the information to the screen
+          print("Distance: {} cm".format(sensor.distance))
 
 #internal software modules 
 from rewards import *
@@ -142,6 +167,7 @@ while True:
           tags="splash_screen_prize_pool_text"
           )    
      canvas.pack()
+     run_us_sensor()
 
      USER_PULLS_SLOT_MACHINE_HANDLE = True
      # animations = [SplashScreen(canvas)]
