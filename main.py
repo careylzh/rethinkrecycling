@@ -20,7 +20,7 @@ GPIO.output(red_led_pin, 0)
 
 #for ultrasonic sensor
 US_sensor_trig = 22
-US_sensor_ech = 32
+US_sensor_ech = 40
 from gpiozero import DistanceSensor
 
 global sensor 
