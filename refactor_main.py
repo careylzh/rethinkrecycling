@@ -27,6 +27,7 @@ from phone_number_screen import PhoneNumberScreen
 #     #  # update_text()
 i=0
 def initiate_crushing(x):
+    global i
     # global root
     # global canvas
     # global bg_label
