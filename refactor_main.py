@@ -89,7 +89,7 @@ GPIO.output(red_led_pin, 0)
 # global canvas
 root = tk.Tk()
 root.wm_attributes('-fullscreen', 'True')
-canvas = tk.Canvas(root, width=1280, height=800, bg="black")
+# canvas = tk.Canvas(root, width=1280, height=800, bg="black")
 # canvas.pack()
 
 background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
