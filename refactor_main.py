@@ -80,11 +80,17 @@ def initiate_crushing(x):
     global bg_label
     print("user pushed lever. initiate_crushing called...\n")
     # bg_label.destroy()
-    bg_label.destroy()
-    current_background_image = ImageTk.PhotoImage(file=background_images[1])
-    bg_label = tk.Label(root, image=current_background_image, tags="bg_label")
+    # OLD
+    # bg_label.destroy()
+    # current_background_image = ImageTk.PhotoImage(file=background_images[1])
+    # bg_label = tk.Label(root, image=current_background_image, tags="bg_label")
     # bg_label.place(relwidth=1, relheight=1)
-    bg_label.pack()
+    # bg_label.pack()
+
+    new_image = Image.open("5-background-win.png").resize((1280, 800))
+    new_tk_image = ImageTk.PhotoImage(new_image)
+    bg_label.configure(image=new_tk_image)
+    bg_label.image = new_tk_image  # Update reference to avoid garbage collection
 
     #  global total_prize_pool
     #  total_prize_pool += 0.10
