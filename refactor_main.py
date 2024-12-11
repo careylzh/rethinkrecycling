@@ -110,7 +110,7 @@ def initiate_gameplay(x):
 #no-prize
 current_background_image = ImageTk.PhotoImage(file=background_images[2])
 bg_label = tk.Label(root, image=current_background_image)
-# bg_label.place(relwidth=1, relheight=1)
+bg_label.place(relwidth=1, relheight=1)
 bg_label.pack()
 # bg_label.destroy()
 sleep(2)
