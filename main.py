@@ -21,7 +21,7 @@ GPIO.output(red_led_pin, 0)
 
 #for ultrasonic sensor
 US_sensor_trig = 22
-US_sensor_ech = 40
+US_sensor_ech = 11
 from gpiozero import DistanceSensor
 
 
@@ -48,6 +48,7 @@ def run_us_sensor():
                print("echo 0")
                pulse_start_time = time.time()
           while GPIO.input(US_sensor_ech)==1:
+               print("echo 1")
                pulse_end_time = time.time()
 
           pulse_duration = pulse_end_time - pulse_start_time
