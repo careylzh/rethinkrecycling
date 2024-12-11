@@ -71,8 +71,8 @@ GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushin
 current_background_image = ImageTk.PhotoImage(file=background_images[0])
 global bg_label 
 bg_label = tk.Label(root, image=current_background_image)
-# bg_label.place(relwidth=1, relheight=1)
-bg_label.pack()
+bg_label.place(relwidth=1, relheight=1)
+# bg_label.pack()
 
 def initiate_crushing(x):
     global root
