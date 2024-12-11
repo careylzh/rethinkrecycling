@@ -94,7 +94,7 @@ root.wm_attributes('-fullscreen', 'True')
 
 # background_images = ["1-background.png","2-background.png","4-background.png","5-background-no-prize.png", "5-background-win.png"]
 background_images = [
-    f"test{str(i).zfill(2)}.png" for i in range(1, 24)
+    f"test{i}.png" for i in range(1, 24)
 ]
 print(background_images)
 
