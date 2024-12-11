@@ -39,7 +39,7 @@ class PhoneNumberScreen:
     
         self.running = True
         self.display = tk.Entry(self.canvas, font=("Helvetica", 24), justify="right")
-        self.display.grid(row=1, column=0, columnspan=3, ipadx=10, ipady=10, padx=5, pady=5)
+        self.display.grid(row=1, column=1, columnspan=3, ipadx=10, ipady=10, padx=5, pady=5)
 
         # Keypad buttons
         self.create_keypad()
@@ -56,7 +56,7 @@ class PhoneNumberScreen:
         
         for (text, row, col) in buttons:
             button = tk.Button(
-                self.canvas, text=text, font=("Helvetica", 10),
+                self.canvas, text=text, font=("Helvetica", 15),
                 command=lambda t=text: self.button_pressed(t), width=4, height=2
             )
             button.grid(row=row, column=col, padx=5, pady=5)
