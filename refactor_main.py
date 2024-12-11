@@ -47,7 +47,11 @@ def initiate_crushing(x):
 
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
-    global total_prize_pool
+    # global total_prize_pool
+    new_image = Image.open("2-background-win.png").resize((1280, 800))
+    new_tk_image = ImageTk.PhotoImage(new_image)
+    bg_label.configure(image=new_tk_image)
+    bg_label.image = new_tk_image
 
 #DEFINE states = 1,2,3,4,5 
 '''
