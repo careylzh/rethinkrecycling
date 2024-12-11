@@ -78,10 +78,12 @@ def initiate_crushing(x):
     global canvas
     global bg_label
     print("user pushed lever. initiate_crushing called...\n")
+    # bg_label.destroy()
     bg_label.destroy()
     current_background_image = ImageTk.PhotoImage(file=background_images[1])
     bg_label = tk.Label(root, image=current_background_image, tags="bg_label")
     bg_label.place(relwidth=1, relheight=1)
+    bg_label.pack()
 
     #  global total_prize_pool
     #  total_prize_pool += 0.10
@@ -108,7 +110,8 @@ def initiate_gameplay(x):
 #no-prize
 current_background_image = ImageTk.PhotoImage(file=background_images[2])
 bg_label = tk.Label(root, image=current_background_image)
-bg_label.place(relwidth=1, relheight=1)
+# bg_label.place(relwidth=1, relheight=1)
+bg_label.pack()
 # bg_label.destroy()
 sleep(2)
 
