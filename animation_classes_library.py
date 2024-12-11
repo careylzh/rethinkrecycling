@@ -132,6 +132,7 @@ class LoadingScreen:
         try:
             if pacman_coords[2] >= pellet_coords[0]:
                 self.canvas.delete(self.pellet)
+                self.canvas.delete(self.pacman)
                 # self.canvas.create_text(250, 150, text=f"Bottle Processed! \n You have won ${self.calculated_reward_amount}", font=("Arial", 14), fill="green")
                 return
         except IndexError:
