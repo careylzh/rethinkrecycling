@@ -99,7 +99,7 @@ root.wm_attributes('-fullscreen', 'True')
 #     f"test{i}.png" for i in range(1, 24)
 # ]
 background_images = [
-    "newww-01.png","newww-02.png"
+    "Artboard 1 copy,png","Artboard1.png"
 ]
 print(background_images)
 
