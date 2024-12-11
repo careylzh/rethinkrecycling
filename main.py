@@ -45,6 +45,7 @@ def run_us_sensor():
           GPIO.output(US_sensor_trig, GPIO.LOW)
 
           while GPIO.input(US_sensor_ech)==0:
+               print("echo 0")
                pulse_start_time = time.time()
           while GPIO.input(US_sensor_ech)==1:
                pulse_end_time = time.time()
