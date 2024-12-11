@@ -106,7 +106,7 @@ class PhoneNumberScreen:
         # self.bg_image_tk = ImageTk.PhotoImage(self.bg_image)
 
         # Add the image to the canvas
-        self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image_tk)
+        self.canvas.create_image(0, 0,anchor=tk.NW, image=self.bg_image_tk, tags="bg-img")
 
         self.canvas.create_text(
           400, 100,  # Coordinates: x=400, y=100
