@@ -1,6 +1,7 @@
 #default python modules
 #import RPi.GPIO as RPI
 from time import sleep
+import time
 import random 
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -23,26 +24,35 @@ US_sensor_trig = 22
 US_sensor_ech = 40
 from gpiozero import DistanceSensor
 
-global sensor 
-sensor = DistanceSensor(trigger=US_sensor_trig, echo=US_sensor_ech)
 
 def run_us_sensor():
-     global sensor
-     while True:
-          # Wait 2 seconds
-          sleep(2)
-          
-          # Get the distance in metres
-          distance = sensor.distance
+     try:
 
-          # But we want it in centimetres
-          distance = sensor.distance * 100
+      GPIO.setup(US_sensor_trig, GPIO.OUT)
+      GPIO.setup(US_sensor_ech, GPIO.IN)
 
-          # We would get a large decimal number so we will round it to 2 places
-          distance = round(sensor.distance, 2)
+      GPIO.output(US_sensor_trig, GPIO.LOW)
 
-          # Print the information to the screen
-          print("Distance: {} cm".format(sensor.distance))
+      print ("Waiting for sensor to settle")
+
+      sleep(2)
+
+      print ("Calculating distance")
+
+      GPIO.output(US_sensor_trig, GPIO.HIGH)
+
+      sleep(0.00001)
+
+      GPIO.output(US_sensor_trig, GPIO.LOW)
+
+      while GPIO.input(US_sensor_ech)==0:
+            pulse_start_time = time.time()
+      while GPIO.input(US_sensor_ech)==1:
+            pulse_end_time = time.time()
+
+      pulse_duration = pulse_end_time - pulse_start_time
+      distance = round(pulse_duration * 17150, 2)
+      print ("Distance:",distance,"cm")
 
 #internal software modules 
 from rewards import *
