@@ -1,5 +1,7 @@
 import tkinter as tk
 from rewards import *
+from PIL import Image, ImageTk
+
 class PhoneNumberScreen:
     def __init__(self, canvas, calculated_reward_amount, total_prize_pool, root):
         self.canvas = canvas
@@ -10,6 +12,11 @@ class PhoneNumberScreen:
         self.calculated_reward_string = None
         self.total_prize_pool = total_prize_pool
         self.root = root
+        self.image_path = "background.png"
+        self.bg_image = Image.open(self.image_path)
+        self.bg_image = self.bg_image.resize((800, 600), Image.Resampling.LANCZOS)  # Use the new Resampling constant
+        self.bg_image_tk = ImageTk.PhotoImage(self.bg_image)
+
 
     def start(self):
         # print("callback in phone number screen: ", callback)
@@ -92,6 +99,14 @@ class PhoneNumberScreen:
         self.root.wm_attributes('-fullscreen', 'True')
         
         self.canvas.configure(width=1280, height=800, bg="white")
+
+        # self.image_path = "background.png"
+        # self.bg_image = Image.open(image_path)
+        # self.bg_image = self.bg_image.resize((800, 600), Image.Resampling.LANCZOS)  # Use the new Resampling constant
+        # self.bg_image_tk = ImageTk.PhotoImage(self.bg_image)
+
+        # Add the image to the canvas
+        self.canvas.create_image(0, 0, anchor=tk.NW, image=self.bg_image_tk)
 
         self.canvas.create_text(
           400, 100,  # Coordinates: x=400, y=100
