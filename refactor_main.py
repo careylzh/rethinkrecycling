@@ -71,7 +71,8 @@ GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushin
 current_background_image = ImageTk.PhotoImage(file=background_images[0])
 global bg_label 
 bg_label = tk.Label(root, image=current_background_image)
-bg_label.place(relwidth=1, relheight=1)
+# bg_label.place(relwidth=1, relheight=1)
+bg_label.pack()
 
 def initiate_crushing(x):
     global root
@@ -82,7 +83,7 @@ def initiate_crushing(x):
     bg_label.destroy()
     current_background_image = ImageTk.PhotoImage(file=background_images[1])
     bg_label = tk.Label(root, image=current_background_image, tags="bg_label")
-    bg_label.place(relwidth=1, relheight=1)
+    # bg_label.place(relwidth=1, relheight=1)
     bg_label.pack()
 
     #  global total_prize_pool
@@ -108,12 +109,12 @@ def initiate_gameplay(x):
 # sleep(2)
 
 #no-prize
-current_background_image = ImageTk.PhotoImage(file=background_images[2])
-bg_label = tk.Label(root, image=current_background_image)
-bg_label.place(relwidth=1, relheight=1)
-bg_label.pack()
+# current_background_image = ImageTk.PhotoImage(file=background_images[2])
+# bg_label = tk.Label(root, image=current_background_image)
+# bg_label.place(relwidth=1, relheight=1)
+# bg_label.pack()
 # bg_label.destroy()
-sleep(2)
+# sleep(2)
 
 root.mainloop()
     #win
