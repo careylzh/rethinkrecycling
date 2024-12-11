@@ -12,7 +12,7 @@ class PhoneNumberScreen:
         self.calculated_reward_string = None
         self.total_prize_pool = total_prize_pool
         self.root = root
-        self.image_path = "background.png"
+        self.image_path = "background.jpg"
         self.bg_image = Image.open(self.image_path)
         self.bg_image = self.bg_image.resize((800, 600), Image.Resampling.LANCZOS)  # Use the new Resampling constant
         self.bg_image_tk = ImageTk.PhotoImage(self.bg_image)
