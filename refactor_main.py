@@ -44,7 +44,7 @@ def initiate_crushing(x):
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-    if(i==23):
+    if(i==22):
         i=0
 
 def initiate_gameplay(x):
