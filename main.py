@@ -69,7 +69,8 @@ def initiate_gameplay(x):
      global total_prize_pool
      global bottle_count
      if bottle_count != 0:
-          canvas.delete("all")
+          canvas.delete("after_submit_screen_butt")
+          canvas.delete("splash_screen_prize_pool_text")
           calculate_reward_amount=calculate_reward()
           animations = [
                     # SplashScreen(canvas),
