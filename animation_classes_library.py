@@ -100,8 +100,8 @@ class LoadingScreen:
         # Initialize game elements
         print("start in LoadingScreen called")
         self.pacman_open = True
-        self.pacman = self.canvas.create_arc(50, 50, 100, 100, start=45, extent=270, fill="green", outline="yellow")
-        self.pellet = self.canvas.create_oval(400, 75, 420, 95, fill="blue", outline="blue")
+        self.pacman = self.canvas.create_arc(50, 50, 100, 100, start=45, extent=270, fill="yellow", outline="yellow")
+        self.pellet = self.canvas.create_oval(400, 75, 420, 95, fill="white", outline="blue")
         self.frames = cycle([(40, 40, 60, 60), (30, 30, 70, 70), (20, 20, 80, 80), (10, 10, 90, 90)])
         self.running = True
         # print(callback)
