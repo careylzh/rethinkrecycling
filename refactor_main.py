@@ -74,7 +74,7 @@ def initiate_pull(x):
     # bg_label.configure(image=new_tk_image)
     # bg_label.image = new_tk_image
 
-    for i in range(3,10):
+    for i in range(3,12):
         # i+=1
         print("tracking i in pull: ", i)
         new_image = Image.open(background_images[i])
