@@ -57,7 +57,7 @@ def initiate_gameplay(x):
     bg_label.image = new_tk_image
     
     global i
-    i=8
+    i=9
     
     return
 
