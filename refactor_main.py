@@ -93,7 +93,7 @@ def run_us_sensor():
           pulse_duration = pulse_end_time - pulse_start_time
           distance = round(pulse_duration * 17150, 2)
           print ("Distance:",distance,"cm")
-          if (distance < 20 & push_screen_on == 0) :
+          if (distance < 20 and push_screen_on == 0) :
                sleep(2)
                initiate_push()
                push_screen_on = 1     
