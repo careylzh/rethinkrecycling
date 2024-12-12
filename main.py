@@ -26,6 +26,8 @@ from gpiozero import DistanceSensor
 
 import asyncio
 import threading
+def push_lever_function():
+     print("display push lever screen")
 def run_us_sensor():
      while True:
           GPIO.setup(US_sensor_trig, GPIO.OUT)
@@ -55,6 +57,10 @@ def run_us_sensor():
           pulse_duration = pulse_end_time - pulse_start_time
           distance = round(pulse_duration * 17150, 2)
           print ("Distance:",distance,"cm")
+          if (distance < 20):
+               sleep(2)
+               push_lever_function()
+
           sleep(3)
 ''' async def sensor_loop():
      sensor_looping = asyncio.get_running_loop()
