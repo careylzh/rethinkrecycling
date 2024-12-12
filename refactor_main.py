@@ -116,13 +116,14 @@ def initiate_pull(x):
     global i
     global pacman_active
     global push_screen_on
+    global lever_active
 
     if (push_screen_on == 1):
         
         print("user pulled lever. initiate_gameplay called...\n")     
 
         pacman_active = 1
-        
+
         # global total_prize_pool
         # new_image = Image.open(background_images[9])
         # new_tk_image = ImageTk.PhotoImage(new_image)
@@ -159,9 +160,7 @@ def initiate_pull(x):
         bg_label.image = new_tk_image  # Update reference to avoid garbage collection
         
         #for us sensor
-        global lever_active
         lever_active = 0
-        global push_screen_on
         push_screen_on = 0
 
         pacman_active = 0
