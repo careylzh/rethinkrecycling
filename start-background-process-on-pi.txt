@@ -1,0 +1,15 @@
+[Unit]
+Description=Run My Python Script at Startup
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /path_to_your_script
+WorkingDirectory=/
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=teamgreen
+
+[Install]
+WantedBy=multi-user.target
+
