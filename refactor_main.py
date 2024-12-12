@@ -69,7 +69,19 @@ def initiate_pull(x):
         bg_label.configure(image=new_tk_image)
         bg_label.image = new_tk_image  # Update reference to avoid garbage collection
         sleep(0.5)
-    
+
+    #generate random reward amount
+    calculate_reward_amount = calculate_reward()
+    if calculate_reward_amount <= 0:
+        new_image = Image.open(background_images[10]) #show "thank you for recycling" screen
+        new_tk_image = ImageTk.PhotoImage(new_image)
+        bg_label.configure(image=new_tk_image)
+        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+    else:
+        new_image = Image.open(background_images[15]) #show "Big Win!" screen
+        new_tk_image = ImageTk.PhotoImage(new_image)
+        bg_label.configure(image=new_tk_image)
+        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
     # global i
     # i=9
     
