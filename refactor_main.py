@@ -103,6 +103,7 @@ def run_us_sensor():
             new_tk_image = ImageTk.PhotoImage(new_image)
             bg_label.configure(image=new_tk_image)
             bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+            push_screen_on = 0
         sleep(2)
 
 def initiate_pull(x):
