@@ -95,27 +95,25 @@ def run_us_sensor():
         distance = round(pulse_duration * 17150, 2)
         print ("Distance:",distance,"cm")
 
-        if (distance < 18 and push_screen_on == 0):# and lever_active == 0) :
+        if (distance < 18 and push_screen_on == 0 and lever_active == 0) :
             sleep(1)
             initiate_push()
             push_screen_on = 1
-            #lever_active = 1 
-        elif (distance > 18):
+            lever_active = 1 
+
+        elif (distance > 18 and push_screen_on == 1):
             new_image = Image.open(background_images[0]) #show default bg screen
             new_tk_image = ImageTk.PhotoImage(new_image)
             bg_label.configure(image=new_tk_image)
             bg_label.image = new_tk_image  # Update reference to avoid garbage collection
             push_screen_on = 0
-            #lever_active = 0
+            lever_active = 0
+            
         sleep(1)
 
 def initiate_pull(x):
     global i
-    print("user pulled lever. initiate_gameplay called...\n")
-
-    #for us sensor
-    
-    #global lever_active 
+    print("user pulled lever. initiate_gameplay called...\n")     
     
     # global total_prize_pool
     # new_image = Image.open(background_images[9])
@@ -151,8 +149,10 @@ def initiate_pull(x):
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-
-    #lever_active = 0
+    
+    #for us sensor
+    global lever_active
+    lever_active = 0
     global push_screen_on
     push_screen_on = 0
     return
