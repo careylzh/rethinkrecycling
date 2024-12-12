@@ -74,30 +74,36 @@ def run_us_sensor():
      GPIO.setup(US_sensor_ech, GPIO.IN)
      global push_screen_on
      while True:
-          GPIO.output(US_sensor_trig, GPIO.LOW)
-          print ("Waiting for sensor to settle")
-          sleep(2)
-          print ("Calculating distance")
+        GPIO.output(US_sensor_trig, GPIO.LOW)
+        print ("Waiting for sensor to settle")
+        sleep(1)
+        print ("Calculating distance")
 
-          GPIO.output(US_sensor_trig, GPIO.HIGH)
-          sleep(0.00001)
-          GPIO.output(US_sensor_trig, GPIO.LOW)
+        GPIO.output(US_sensor_trig, GPIO.HIGH)
+        sleep(0.00001)
+        GPIO.output(US_sensor_trig, GPIO.LOW)
 
-          while GPIO.input(US_sensor_ech)==0:
-               #print("echo 0")
-               pulse_start_time = time.time()
-          while GPIO.input(US_sensor_ech)==1:
-               #print("echo 1")
-               pulse_end_time = time.time()
+        while GPIO.input(US_sensor_ech)==0:
+            #print("echo 0")
+            pulse_start_time = time.time()
+        while GPIO.input(US_sensor_ech)==1:
+            #print("echo 1")
+            pulse_end_time = time.time()
 
-          pulse_duration = pulse_end_time - pulse_start_time
-          distance = round(pulse_duration * 17150, 2)
-          print ("Distance:",distance,"cm")
-          if (distance < 20 and push_screen_on == 0) :
-               sleep(2)
-               initiate_push()
-               push_screen_on = 1     
-          sleep(4)
+        pulse_duration = pulse_end_time - pulse_start_time
+        distance = round(pulse_duration * 17150, 2)
+        print ("Distance:",distance,"cm")
+
+        if (distance < 20 and push_screen_on == 0) :
+            sleep(2)
+            initiate_push()
+            push_screen_on = 1
+        else:
+            new_image = Image.open(background_images[0]) #show default bg screen
+            new_tk_image = ImageTk.PhotoImage(new_image)
+            bg_label.configure(image=new_tk_image)
+            bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+        sleep(2)
 
 def initiate_pull(x):
     global i
@@ -135,6 +141,12 @@ def initiate_pull(x):
         bg_label.image = new_tk_image  # Update reference to avoid garbage collection
     # global i
     # i=9
+    sleep(2)
+    new_image = Image.open(background_images[0]) #show default bg screen
+    new_tk_image = ImageTk.PhotoImage(new_image)
+    bg_label.configure(image=new_tk_image)
+    bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+
     
     return
 
