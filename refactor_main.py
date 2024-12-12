@@ -93,7 +93,7 @@ def run_us_sensor():
           print ("Distance:",distance,"cm")
           if (distance < 20):
                sleep(2)
-               initiate_pull()
+               initiate_push()
           sleep(4)
 
 def initiate_pull(x):
