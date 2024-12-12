@@ -26,6 +26,7 @@ from phone_number_screen import PhoneNumberScreen
 #     #  print("total prize pool", total_prize_pool)
 #     #  # update_text()
 i=0
+total_prize_pool = 5.00
 def initiate_push(x):
     global i
     # global root
