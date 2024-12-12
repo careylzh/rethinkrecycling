@@ -67,10 +67,12 @@ def initiate_push():
 
 US_sensor_trig = 22
 US_sensor_ech = 11
+push_screen_on = 0
 
 def run_us_sensor():
      GPIO.setup(US_sensor_trig, GPIO.OUT)
      GPIO.setup(US_sensor_ech, GPIO.IN)
+     global push_screen_on
      while True:
           GPIO.output(US_sensor_trig, GPIO.LOW)
           print ("Waiting for sensor to settle")
@@ -91,14 +93,19 @@ def run_us_sensor():
           pulse_duration = pulse_end_time - pulse_start_time
           distance = round(pulse_duration * 17150, 2)
           print ("Distance:",distance,"cm")
-          if (distance < 20):
+          if (distance < 20 & push_screen_on == 0) :
                sleep(2)
                initiate_push()
+               push_screen_on = 1     
           sleep(4)
 
 def initiate_pull(x):
     global i
     print("user pulled lever. initiate_gameplay called...\n")
+
+    #for us sensor
+    global push_screen_on
+    push_screen_on = 0
     # global total_prize_pool
     # new_image = Image.open(background_images[9])
     # new_tk_image = ImageTk.PhotoImage(new_image)
@@ -183,8 +190,8 @@ background_images = [
 ]
 print(background_images)
 
-#GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_pull, bouncetime=500) --> replaced by us sensor 
-GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_push, bouncetime=500)
+GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_pull, bouncetime=500) 
+#GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_push, bouncetime=500) --> replaced by us sensor 
 
 current_background_image = ImageTk.PhotoImage(file=background_images[0])
 # global bg_label 
