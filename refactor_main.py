@@ -50,7 +50,7 @@ def initiate_crushing(x):
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
     # global total_prize_pool
-    new_image = Image.open("Artboard 1 copy.png")
+    new_image = Image.open(background_images[9])
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image
@@ -98,8 +98,11 @@ root.wm_attributes('-fullscreen', 'True')
 # background_images = [
 #     f"test{i}.png" for i in range(1, 24)
 # ]
+# background_images = [
+#     "Artboard 1 copy.png","Artboard1.png"
+# ]
 background_images = [
-    "Artboard 1 copy.png","Artboard1.png"
+    f"{i}.png" for i in range(1, 24)
 ]
 print(background_images)
 
