@@ -149,7 +149,7 @@ screens:
 
 '''
 # SCREEN_STATE = 1
-
+import time
 import RPi.GPIO as GPIO
 switch_in = 12 # to update
 switch_in_crushing = 16
