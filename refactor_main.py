@@ -227,7 +227,7 @@ background_images = [
 print(background_images)
 
 GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_pull, bouncetime=500) 
-#GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_push, bouncetime=500) --> replaced by us sensor 
+GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_push, bouncetime=500)
 
 current_background_image = ImageTk.PhotoImage(file=background_images[0])
 # global bg_label 
