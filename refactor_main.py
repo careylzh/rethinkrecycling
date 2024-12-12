@@ -26,7 +26,7 @@ from phone_number_screen import PhoneNumberScreen
 #     #  print("total prize pool", total_prize_pool)
 #     #  # update_text()
 i=0
-def initiate_crushing(x):
+def initiate_push(x):
     global i
     # global root
     # global canvas
@@ -40,7 +40,7 @@ def initiate_crushing(x):
     # bg_label.place(relwidth=1, relheight=1)
     # bg_label.pack()
 
-    for i in range(0,7):
+    for i in range(0,3):
         # i+=1
         print("tracking i in push: ", i)
         new_image = Image.open(background_images[i])
@@ -48,11 +48,11 @@ def initiate_crushing(x):
         bg_label.configure(image=new_tk_image)
         bg_label.image = new_tk_image  # Update reference to avoid garbage collection
         sleep(0.5)
-    if(i==22):
-        i=0
+    # if(i==2):
+    #     i=0
     return
 
-def initiate_gameplay(x):
+def initiate_pull(x):
     global i
     print("user pulled lever. initiate_gameplay called...\n")
     # global total_prize_pool
@@ -61,7 +61,7 @@ def initiate_gameplay(x):
     # bg_label.configure(image=new_tk_image)
     # bg_label.image = new_tk_image
 
-    for i in range(0,7):
+    for i in range(3,10):
         # i+=1
         print("tracking i in pull: ", i)
         new_image = Image.open(background_images[i])
@@ -127,8 +127,8 @@ background_images = [
 ]
 print(background_images)
 
-GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_gameplay, bouncetime=500)
-GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_crushing, bouncetime=500)
+GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_pull, bouncetime=500)
+GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_push, bouncetime=500)
 
 current_background_image = ImageTk.PhotoImage(file=background_images[0])
 # global bg_label 
