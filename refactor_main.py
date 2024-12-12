@@ -112,13 +112,13 @@ def run_us_sensor():
 
         if (pull_instruction_on == 0 and pacman_active == 0):
 
-            if (distance < 18 and push_instruction_on == 0) :
+            if (distance < 11 and push_instruction_on == 0) :
                 sleep(1)
                 # initiate_push()
                 initiate_push_instructions()
                 push_instruction_on = 1
 
-            elif (distance > 18 and push_instruction_on == 1):
+            elif (distance > 11 and push_instruction_on == 1):
                 new_image = Image.open(background_images[0]) #show default bg screen
                 new_tk_image = ImageTk.PhotoImage(new_image)
                 bg_label.configure(image=new_tk_image)
