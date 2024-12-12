@@ -57,29 +57,36 @@ def initiate_push_instructions():
 
 def initiate_push(x):
     global i
-    print("user pushed lever. initiate_crushing called...\n")
+    global pacman_active
+    global pull_instruction_on
+    if(push_instruction_on == 1):
+        print("user pushed lever. initiate_crushing called...\n")
 
-    for i in range(4,12):
-        # i+=1
-        print("tracking i in push: ", i)
-        new_image = Image.open(background_images[i])
-        new_tk_image = ImageTk.PhotoImage(new_image)
-        bg_label.configure(image=new_tk_image)
-        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-        sleep(0.5)
-    # if(i==2):
-    #     i=0
+        pacman_active = 1
+        for i in range(4,12):
+            # i+=1
+            print("tracking i in push: ", i)
+            new_image = Image.open(background_images[i])
+            new_tk_image = ImageTk.PhotoImage(new_image)
+            bg_label.configure(image=new_tk_image)
+            bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+            sleep(0.5)
+        # if(i==2):
+        #     i=0
+        pull_instruction_on = 1
+    pacman_active = 0
     return
 
 US_sensor_trig = 22
 US_sensor_ech = 11
-push_screen_on = 0
+push_instruction_on = 0
 lever_active = 0
 pacman_active = 0
+pull_instruction_on = 0
 def run_us_sensor():
      GPIO.setup(US_sensor_trig, GPIO.OUT)
      GPIO.setup(US_sensor_ech, GPIO.IN)
-     global push_screen_on
+     global push_instruction_on
      global lever_active
      global pacman_active
      while True:
@@ -104,32 +111,30 @@ def run_us_sensor():
 
         if (pacman_active == 0):
 
-            if (distance < 18 and push_screen_on == 0) :
+            if (distance < 18 and push_instruction_on == 0) :
                 sleep(1)
                 # initiate_push()
                 initiate_push_instructions()
-                push_screen_on = 1
+                push_instruction_on = 1
 
-            elif (distance > 18 and push_screen_on == 1):
+            elif (distance > 18 and push_instruction_on == 1):
                 new_image = Image.open(background_images[0]) #show default bg screen
                 new_tk_image = ImageTk.PhotoImage(new_image)
                 bg_label.configure(image=new_tk_image)
                 bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-                push_screen_on = 0
+                push_instruction_on = 0
 
         sleep(1)
 
 def initiate_pull(x):
     global i
     global pacman_active
-    global push_screen_on
+    global pull_instruction_on
     global lever_active
 
-    if (push_screen_on == 1):
+    if (pull_instruction_on == 1):
         
         print("user pulled lever. initiate_gameplay called...\n")     
-
-        pacman_active = 1
 
         # global total_prize_pool
         # new_image = Image.open(background_images[9])
@@ -168,10 +173,8 @@ def initiate_pull(x):
         
         #for us sensor
         lever_active = 0
-        push_screen_on = 0
-
-        pacman_active = 0
-
+        pull_instruction_on = 0
+        
     return
 
     # sleep(2)
