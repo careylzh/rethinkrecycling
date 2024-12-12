@@ -113,52 +113,55 @@ def run_us_sensor():
         sleep(1)
 
 def initiate_pull(x):
-    global i
-    print("user pulled lever. initiate_gameplay called...\n")     
-    global pacman_active
-    pacman_active = 1
-    # global total_prize_pool
-    # new_image = Image.open(background_images[9])
-    # new_tk_image = ImageTk.PhotoImage(new_image)
-    # bg_label.configure(image=new_tk_image)
-    # bg_label.image = new_tk_image
 
-    for i in range(3,10):
-        # i+=1
-        print("tracking i in pull: ", i)
-        new_image = Image.open(background_images[i])
+    if (push_screen_on == 1):
+        global i
+        print("user pulled lever. initiate_gameplay called...\n")     
+        global pacman_active
+        pacman_active = 1
+        # global total_prize_pool
+        # new_image = Image.open(background_images[9])
+        # new_tk_image = ImageTk.PhotoImage(new_image)
+        # bg_label.configure(image=new_tk_image)
+        # bg_label.image = new_tk_image
+
+        for i in range(3,10):
+            # i+=1
+            print("tracking i in pull: ", i)
+            new_image = Image.open(background_images[i])
+            new_tk_image = ImageTk.PhotoImage(new_image)
+            bg_label.configure(image=new_tk_image)
+            bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+            sleep(0.5)
+
+        #generate random reward amount
+        calculate_reward_amount = calculate_reward()
+        if calculate_reward_amount <= 0:
+            new_image = Image.open(background_images[10]) #show "thank you for recycling" screen
+            new_tk_image = ImageTk.PhotoImage(new_image)
+            bg_label.configure(image=new_tk_image)
+            bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+        else:
+            new_image = Image.open(background_images[15]) #show "Big Win!" screen
+            new_tk_image = ImageTk.PhotoImage(new_image)
+            bg_label.configure(image=new_tk_image)
+            bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+        # global i
+        # i=9
+        sleep(2)
+        new_image = Image.open(background_images[0]) #show default bg screen
         new_tk_image = ImageTk.PhotoImage(new_image)
         bg_label.configure(image=new_tk_image)
         bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-        sleep(0.5)
+        
+        #for us sensor
+        global lever_active
+        lever_active = 0
+        global push_screen_on
+        push_screen_on = 0
 
-    #generate random reward amount
-    calculate_reward_amount = calculate_reward()
-    if calculate_reward_amount <= 0:
-        new_image = Image.open(background_images[10]) #show "thank you for recycling" screen
-        new_tk_image = ImageTk.PhotoImage(new_image)
-        bg_label.configure(image=new_tk_image)
-        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-    else:
-        new_image = Image.open(background_images[15]) #show "Big Win!" screen
-        new_tk_image = ImageTk.PhotoImage(new_image)
-        bg_label.configure(image=new_tk_image)
-        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-    # global i
-    # i=9
-    sleep(2)
-    new_image = Image.open(background_images[0]) #show default bg screen
-    new_tk_image = ImageTk.PhotoImage(new_image)
-    bg_label.configure(image=new_tk_image)
-    bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-    
-    #for us sensor
-    global lever_active
-    lever_active = 0
-    global push_screen_on
-    push_screen_on = 0
+        pacman_active = 0
 
-    pacman_active = 0
     return
 
     # sleep(2)
