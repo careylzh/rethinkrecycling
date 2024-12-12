@@ -39,21 +39,27 @@ def calculate_reward():
      total_prize_pool = round(total_prize_pool,2)
      return calculate_reward_amount
 
-def initiate_push():
+def initiate_push_instructions():
     global i
-    # global root
-    # global canvas
-    # global bg_label
-    print("user pushed lever. initiate_crushing called...\n")
-    # bg_label.destroy()
-    # OLD
-    # bg_label.destroy()
-    # current_background_image = ImageTk.PhotoImage(file=background_images[1])
-    # bg_label = tk.Label(root, image=current_background_image, tags="bg_label")
-    # bg_label.place(relwidth=1, relheight=1)
-    # bg_label.pack()
+    print("Bottle detected. waiting for user to push lever...\n")
 
     for i in range(0,3):
+        # i+=1
+        print("tracking i in push: ", i)
+        new_image = Image.open(background_images[i])
+        new_tk_image = ImageTk.PhotoImage(new_image)
+        bg_label.configure(image=new_tk_image)
+        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+        sleep(0.5)
+    # if(i==2):
+    #     i=0
+    return
+
+def initiate_push():
+    global i
+    print("user pushed lever. initiate_crushing called...\n")
+
+    for i in range(4,12):
         # i+=1
         print("tracking i in push: ", i)
         new_image = Image.open(background_images[i])
@@ -100,7 +106,8 @@ def run_us_sensor():
 
             if (distance < 18 and push_screen_on == 0) :
                 sleep(1)
-                initiate_push()
+                # initiate_push()
+                initiate_push_instructions()
                 push_screen_on = 1
 
             elif (distance > 18 and push_screen_on == 1):
@@ -130,7 +137,7 @@ def initiate_pull(x):
         # bg_label.configure(image=new_tk_image)
         # bg_label.image = new_tk_image
 
-        for i in range(3,10):
+        for i in range(13,15):
             # i+=1
             print("tracking i in pull: ", i)
             new_image = Image.open(background_images[i])
@@ -142,7 +149,7 @@ def initiate_pull(x):
         #generate random reward amount
         calculate_reward_amount = calculate_reward()
         if calculate_reward_amount <= 0:
-            new_image = Image.open(background_images[10]) #show "thank you for recycling" screen
+            new_image = Image.open(background_images[21]) #show "Oops! Good luck next time." screen
             new_tk_image = ImageTk.PhotoImage(new_image)
             bg_label.configure(image=new_tk_image)
             bg_label.image = new_tk_image  # Update reference to avoid garbage collection
