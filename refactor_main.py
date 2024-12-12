@@ -88,7 +88,7 @@ def run_us_sensor():
      GPIO.setup(US_sensor_ech, GPIO.IN)
      global push_instruction_on
      global lever_active
-     global pacman_active
+     global pull_instruction_on
      while True:
         GPIO.output(US_sensor_trig, GPIO.LOW)
         print ("Waiting for sensor to settle")
@@ -109,7 +109,7 @@ def run_us_sensor():
         distance = round(pulse_duration * 17150, 2)
         print ("Distance:",distance,"cm")
 
-        if (pacman_active == 0):
+        if (pull_instruction_on == 0):
 
             if (distance < 18 and push_instruction_on == 0) :
                 sleep(1)
