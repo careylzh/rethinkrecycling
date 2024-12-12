@@ -46,6 +46,7 @@ def initiate_crushing(x):
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
     if(i==22):
         i=0
+    return
 
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
@@ -54,6 +55,11 @@ def initiate_gameplay(x):
     new_tk_image = ImageTk.PhotoImage(new_image)
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image
+    
+    global i
+    i=8
+    
+    return
 
     # sleep(2)
     # new_image = Image.open("2-background-no-prize.png").resize((1280, 800))
@@ -62,6 +68,7 @@ def initiate_gameplay(x):
     # bg_label.image = new_tk_image
 
 #DEFINE states = 1,2,3,4,5 
+    return
 '''
 screens: 
 1 - 
