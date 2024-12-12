@@ -68,15 +68,16 @@ def initiate_push():
 US_sensor_trig = 22
 US_sensor_ech = 11
 push_screen_on = 0
+lever_active = 0
 
 def run_us_sensor():
      GPIO.setup(US_sensor_trig, GPIO.OUT)
      GPIO.setup(US_sensor_ech, GPIO.IN)
      global push_screen_on
+     global lever_active
      while True:
         GPIO.output(US_sensor_trig, GPIO.LOW)
         print ("Waiting for sensor to settle")
-        sleep(1)
         print ("Calculating distance")
 
         GPIO.output(US_sensor_trig, GPIO.HIGH)
@@ -94,17 +95,19 @@ def run_us_sensor():
         distance = round(pulse_duration * 17150, 2)
         print ("Distance:",distance,"cm")
 
-        if (distance < 20 and push_screen_on == 0) :
-            sleep(2)
-            initiate_push()
-            push_screen_on = 1
-        elif (distance > 20):
-            new_image = Image.open(background_images[0]) #show default bg screen
-            new_tk_image = ImageTk.PhotoImage(new_image)
-            bg_label.configure(image=new_tk_image)
-            bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-            push_screen_on = 0
-        sleep(2)
+        if lever_active == 0:
+            if (distance < 18 and push_screen_on == 0) :
+                sleep(1)
+                initiate_push()
+                push_screen_on = 1
+                lever_active = 1
+            elif (distance > 18):
+                new_image = Image.open(background_images[0]) #show default bg screen
+                new_tk_image = ImageTk.PhotoImage(new_image)
+                bg_label.configure(image=new_tk_image)
+                bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+                push_screen_on = 0
+        sleep(1)
 
 def initiate_pull(x):
     global i
@@ -113,6 +116,8 @@ def initiate_pull(x):
     #for us sensor
     global push_screen_on
     push_screen_on = 0
+    global lever_active 
+    lever_active = 0
     # global total_prize_pool
     # new_image = Image.open(background_images[9])
     # new_tk_image = ImageTk.PhotoImage(new_image)
