@@ -53,6 +53,7 @@ def initiate_crushing(x):
     return
 
 def initiate_gameplay(x):
+    global i
     print("user pulled lever. initiate_gameplay called...\n")
     # global total_prize_pool
     # new_image = Image.open(background_images[9])
@@ -69,8 +70,8 @@ def initiate_gameplay(x):
         bg_label.image = new_tk_image  # Update reference to avoid garbage collection
         sleep(0.5)
     
-    global i
-    i=9
+    # global i
+    # i=9
     
     return
 
