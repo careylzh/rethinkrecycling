@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 from rewards import *
 # from animation_classes_library import *
 from phone_number_screen import PhoneNumberScreen
-
+import threading
 # def initiate_crushing(x):
 #     global root
 #     global canvas
@@ -39,7 +39,7 @@ def calculate_reward():
      total_prize_pool = round(total_prize_pool,2)
      return calculate_reward_amount
 
-def initiate_push(x):
+def initiate_push():
     global i
     # global root
     # global canvas
@@ -64,6 +64,40 @@ def initiate_push(x):
     # if(i==2):
     #     i=0
     return
+
+US_sensor_trig = 22
+US_sensor_ech = 11
+
+def run_us_sensor():
+     GPIO.setup(US_sensor_trig, GPIO.OUT)
+     GPIO.setup(US_sensor_ech, GPIO.IN)
+     while True:
+          GPIO.output(US_sensor_trig, GPIO.LOW)
+          print ("Waiting for sensor to settle")
+          sleep(2)
+          print ("Calculating distance")
+
+          GPIO.output(US_sensor_trig, GPIO.HIGH)
+          sleep(0.00001)
+          GPIO.output(US_sensor_trig, GPIO.LOW)
+
+          while GPIO.input(US_sensor_ech)==0:
+               #print("echo 0")
+               pulse_start_time = time.time()
+          while GPIO.input(US_sensor_ech)==1:
+               #print("echo 1")
+               pulse_end_time = time.time()
+
+          pulse_duration = pulse_end_time - pulse_start_time
+          distance = round(pulse_duration * 17150, 2)
+          print ("Distance:",distance,"cm")
+          if (distance < 20):
+               sleep(2)
+               initiate_pull()
+          sleep(4)
+
+sensor_thread = threading.Thread(target=run_us_sensor)
+sensor_thread.start()
 
 def initiate_pull(x):
     global i
@@ -152,7 +186,7 @@ background_images = [
 ]
 print(background_images)
 
-GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_pull, bouncetime=500)
+#GPIO.add_event_detect(switch_in, GPIO.RISING, callback=initiate_pull, bouncetime=500) --> replaced by us sensor 
 GPIO.add_event_detect(switch_in_crushing, GPIO.RISING, callback=initiate_push, bouncetime=500)
 
 current_background_image = ImageTk.PhotoImage(file=background_images[0])
