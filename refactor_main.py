@@ -39,11 +39,15 @@ def initiate_crushing(x):
     # bg_label = tk.Label(root, image=current_background_image, tags="bg_label")
     # bg_label.place(relwidth=1, relheight=1)
     # bg_label.pack()
-    i+=1
-    new_image = Image.open(background_images[i])
-    new_tk_image = ImageTk.PhotoImage(new_image)
-    bg_label.configure(image=new_tk_image)
-    bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+
+    for i in range(0,7):
+        # i+=1
+        print("tracking i in push: ", i)
+        new_image = Image.open(background_images[i])
+        new_tk_image = ImageTk.PhotoImage(new_image)
+        bg_label.configure(image=new_tk_image)
+        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+        sleep(0.5)
     if(i==22):
         i=0
     return
@@ -51,10 +55,19 @@ def initiate_crushing(x):
 def initiate_gameplay(x):
     print("user pulled lever. initiate_gameplay called...\n")
     # global total_prize_pool
-    new_image = Image.open(background_images[9])
-    new_tk_image = ImageTk.PhotoImage(new_image)
-    bg_label.configure(image=new_tk_image)
-    bg_label.image = new_tk_image
+    # new_image = Image.open(background_images[9])
+    # new_tk_image = ImageTk.PhotoImage(new_image)
+    # bg_label.configure(image=new_tk_image)
+    # bg_label.image = new_tk_image
+
+    for i in range(0,7):
+        # i+=1
+        print("tracking i in pull: ", i)
+        new_image = Image.open(background_images[i])
+        new_tk_image = ImageTk.PhotoImage(new_image)
+        bg_label.configure(image=new_tk_image)
+        bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+        sleep(0.5)
     
     global i
     i=9
