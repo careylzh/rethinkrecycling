@@ -98,7 +98,7 @@ def run_us_sensor():
             sleep(2)
             initiate_push()
             push_screen_on = 1
-        else:
+        elif (distance > 20):
             new_image = Image.open(background_images[0]) #show default bg screen
             new_tk_image = ImageTk.PhotoImage(new_image)
             bg_label.configure(image=new_tk_image)
