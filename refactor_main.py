@@ -96,9 +96,6 @@ def run_us_sensor():
                initiate_pull()
           sleep(4)
 
-sensor_thread = threading.Thread(target=run_us_sensor)
-sensor_thread.start()
-
 def initiate_pull(x):
     global i
     print("user pulled lever. initiate_gameplay called...\n")
@@ -226,6 +223,10 @@ bg_label.pack()
 # bg_label.pack()
 # bg_label.destroy()
 # sleep(2)
+
+### Us sensor initialisation
+sensor_thread = threading.Thread(target=run_us_sensor)
+sensor_thread.start()
 
 root.mainloop()
     #win
