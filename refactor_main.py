@@ -113,12 +113,16 @@ def run_us_sensor():
         sleep(1)
 
 def initiate_pull(x):
+    global i
+    global pacman_active
+    global push_screen_on
 
     if (push_screen_on == 1):
-        global i
+        
         print("user pulled lever. initiate_gameplay called...\n")     
-        global pacman_active
+
         pacman_active = 1
+        
         # global total_prize_pool
         # new_image = Image.open(background_images[9])
         # new_tk_image = ImageTk.PhotoImage(new_image)
