@@ -55,7 +55,7 @@ def initiate_push_instructions():
     #     i=0
     return
 
-def initiate_push():
+def initiate_push(x):
     global i
     print("user pushed lever. initiate_crushing called...\n")
 
