@@ -117,7 +117,7 @@ def initiate_pull(x):
     global push_screen_on
     push_screen_on = 0
     global lever_active 
-    lever_active = 0
+    
     # global total_prize_pool
     # new_image = Image.open(background_images[9])
     # new_tk_image = ImageTk.PhotoImage(new_image)
@@ -153,7 +153,7 @@ def initiate_pull(x):
     bg_label.configure(image=new_tk_image)
     bg_label.image = new_tk_image  # Update reference to avoid garbage collection
 
-    
+    lever_active = 0
     return
 
     # sleep(2)
