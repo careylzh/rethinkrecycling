@@ -69,12 +69,13 @@ US_sensor_trig = 22
 US_sensor_ech = 11
 push_screen_on = 0
 lever_active = 0
-
+pacman_active = 0
 def run_us_sensor():
      GPIO.setup(US_sensor_trig, GPIO.OUT)
      GPIO.setup(US_sensor_ech, GPIO.IN)
      global push_screen_on
      global lever_active
+     global pacman_active
      while True:
         GPIO.output(US_sensor_trig, GPIO.LOW)
         print ("Waiting for sensor to settle")
@@ -95,26 +96,27 @@ def run_us_sensor():
         distance = round(pulse_duration * 17150, 2)
         print ("Distance:",distance,"cm")
 
-        if (distance < 18 and push_screen_on == 0 and lever_active == 0) :
-            sleep(1)
-            initiate_push()
-            push_screen_on = 1
-            lever_active = 1 
+        if (pacman_active == 0):
 
-        elif (distance > 18 and push_screen_on == 1):
-            new_image = Image.open(background_images[0]) #show default bg screen
-            new_tk_image = ImageTk.PhotoImage(new_image)
-            bg_label.configure(image=new_tk_image)
-            bg_label.image = new_tk_image  # Update reference to avoid garbage collection
-            push_screen_on = 0
-            lever_active = 0
-            
+            if (distance < 18 and push_screen_on == 0) :
+                sleep(1)
+                initiate_push()
+                push_screen_on = 1
+
+            elif (distance > 18 and push_screen_on == 1):
+                new_image = Image.open(background_images[0]) #show default bg screen
+                new_tk_image = ImageTk.PhotoImage(new_image)
+                bg_label.configure(image=new_tk_image)
+                bg_label.image = new_tk_image  # Update reference to avoid garbage collection
+                push_screen_on = 0
+
         sleep(1)
 
 def initiate_pull(x):
     global i
     print("user pulled lever. initiate_gameplay called...\n")     
-    
+    global pacman_active
+    pacman_active = 1
     # global total_prize_pool
     # new_image = Image.open(background_images[9])
     # new_tk_image = ImageTk.PhotoImage(new_image)
@@ -155,6 +157,8 @@ def initiate_pull(x):
     lever_active = 0
     global push_screen_on
     push_screen_on = 0
+
+    pacman_active = 0
     return
 
     # sleep(2)
