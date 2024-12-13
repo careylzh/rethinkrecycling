@@ -6,7 +6,6 @@ from PIL import Image, ImageTk
 
 #internal software modules 
 from rewards import *
-# from animation_classes_library import *
 from phone_number_screen import PhoneNumberScreen
 import threading
 
